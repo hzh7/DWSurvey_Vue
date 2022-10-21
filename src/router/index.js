@@ -13,10 +13,12 @@ import DwAnswerWeixin from '@/views/dw-survey/dw-collect/DwAnswerWeixin'
 import DwSurveyCharts from '@/views/dw-survey/dw-data/DwSurveyCharts'
 import DwSurveyAnswer from '@/views/dw-survey/dw-data/DwSurveyAnswer'
 import DwSurveyAnswerInfo from '@/views/dw-survey/dw-data/DwSurveyAnswerInfo'
+import DwSurveyReportPdf from '@/views/dw-survey/dw-data/DwSurveyReportPdf'
 import DwUser from '@/views/dw-user/DwUser'
 import DwUserPwd from '@/views/dw-user/DwUserPwd'
 import AdminUserList from '@/views/dw-admin/AdminUserList'
 import Login from '@/views/Login'
+import ReportList from '@/views/dw-report/ReportList'
 
 Vue.use(Router)
 
@@ -85,6 +87,11 @@ export default new Router({
           path: '/dw/admin/user',
           name: 'AdminUserList',
           component: AdminUserList
+        },
+        {
+          path: '/dw/report',
+          name: 'ReportList',
+          component: ReportList
         }
       ]
     },
@@ -102,6 +109,11 @@ export default new Router({
           path: '/no-top/dw-survey/d/data/:id/:answerId',
           name: 'DwSurveyAnswerInfo',
           component: DwSurveyAnswerInfo
+        },
+        {
+          path: '/no-top/dw-survey/d/report/:id/:answerId',
+          name: 'DwSurveyReportPdf',
+          component: DwSurveyReportPdf
         }
       ]
     },
