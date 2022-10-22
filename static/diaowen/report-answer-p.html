@@ -43,7 +43,7 @@
   <input type="hidden" id="anClient" name="anClient" value="p">
   <input type="hidden" id="answerLoadTag" name="answerLoadTag" value="0">
   <input type="hidden" id="breakpoint1" name="breakpoint1" value="0">
-  <form id="surveyForm" action="/api/dwsurvey/anon/response/save.do" method="post" >
+  <form id="reportForm" action="/api/dwsurvey/anon/response/save.do" method="post" >
     <input type="hidden" id="surveyId" name="surveyId" value="${survey.id }">
     <input type="hidden" id="ruleCode" name="ruleCode" value="">
     <input type="hidden" id="surveyLogId" name="surveyLogId" value="${survey.surveyLogId }">
@@ -56,7 +56,8 @@
           </div>
           <div id="dwSurveyNote">
             <div id="dwSurveyNoteTools">参考样例</div>
-            <div id="dwSurveyNoteEdit"  class="editAble">加载中</div>
+            <span style="margin-left: 20px">请配置需要生成进报告内的题目</span>
+            <!--            <div id="dwSurveyNoteEdit"  class="editAble">加载中</div>-->
           </div>
         </div>
 
@@ -413,10 +414,10 @@
       <li class="li_surveyQuItemBody surveySubmitBody" >
         <div class="surveyQuItemBody">
           <div class="surveyQuItem">
-            <input type="hidden" class="quType" value="submitSurveyBtn">
+            <input type="hidden" class="quType" value="submitReportBtn">
             <input type="hidden" class="pageNo" value="${pageNo}" >
             <div class="surveyQuItemContent" style="padding: 12px 0px;height: 30px;min-height: 30px;">
-              <a href="#" id="submitSurvey" class="sbtn24 sbtn24_0 submitSurvey" >提&nbsp;交</a>&nbsp;&nbsp;
+              <a href="#" id="submitReport" class="sbtn24 sbtn24_0 submitReport" >确 认</a>&nbsp;&nbsp;
               <input type="hidden" name="prevPageNo" value="${pageNo-1 }">
               <input type="hidden" name="nextPageNo" value="${pageNo }">
             </div>

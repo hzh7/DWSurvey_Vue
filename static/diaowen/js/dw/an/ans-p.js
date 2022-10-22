@@ -123,6 +123,22 @@ function sww() {
     return false;
   });
 
+  $(".submitReport").click(function(){
+    var thTxt = $(this).text();
+    if(thTxt==="确 认"){
+      $(".submitReport").css({"background-position": "0 -320px"});
+      $(".submitReport").text("正在提交");
+      setTimeout(function(){
+        $(".submitReport").css({"background-position": "0 -200px"});
+        $(".submitReport").text("确 认");
+      },5000);
+      $("#reportForm").submit();
+    }else{
+      alert("5秒内禁止重复提交！");
+    }
+    return false;
+  });
+
   //评分题
   $(".scoreNumTable tr td").click(function(){
     //scoreNumInput
