@@ -21,5 +21,7 @@ export default {
   adminUserUpdate: `/api/dwsurvey/admin/user/edit.do`,
   adminUserDelete: `/api/dwsurvey/admin/user/delete.do`,
   curUserInfo: `/api/dwsurvey/app/user/currentUser.do`,
-  curUserPwdUpdate: `/api/dwsurvey/app/user/up-pwd.do`
+  curUserPwdUpdate: `/api/dwsurvey/app/user/up-pwd.do`,
+  reportList: `/api/dwsurvey/app/report/list.do`,
+  reportCreate: `/api/dwsurvey/app/report/add.do`
 }

@@ -1,13 +1,17 @@
 @CHARSET "UTF-8";
+
 *{
 	margin: 0px;
 	padding: 0px;
 }
+body{
+	background: #E8E9EB;
+}
 .notification {
 		position: fixed;
 		display: inline-block;
-		padding: 1.5em 5em;
-		box-shadow: 2px 2px 5px -2px rgba(0,0,0,0.5);
+		padding: .5em 5em;
+		/* box-shadow: 2px 2px 5px -2px rgba(0,0,0,0.5); */
 		background:#589FD3;
 		color: white;
 		z-index: 1000;
@@ -18,386 +22,553 @@
 		-moz-opacity:0.5; Firefox私有，透明度50%
 		opacity:0.5;其他，透明度50% */
 }
-.sbtn24{
-	background: url(../images/btn24.png) no-repeat 999px 999px;
-	width: 88px;
-	height: 30px;
-	color: #777;
-	background-position: 0 -240px;
-	font-size: 12px;
-	border: 0;
-	cursor: pointer;
-	display: inline-block;
-	zoom: 1;
-	line-height: 30px;
-	text-align: center;
-	text-decoration: none;
-	font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";
+.ellipsis{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	-icab-text-overflow:ellipsis;
+	-khtml-text-overflow:ellipsis;
+	-moz-text-overflow:ellipsis;
+	-webkit-text-overflow:ellipsis;
 }
-.sbtn24{
-	margin-left: 10px;
-	letter-spacing: 3px;
-}
-.sbtn24_0{
-	background-position: 0 -200px;
-	color: #fff;
-}
-.sbtn24_1{
-	color: #333333;
-}
-.sbtn24_0:hover{
-	background-position: -98px -200px;
-}
-.sbtn24_1:hover{
-	background-position: -98px -240px;
-}
-
-.sbtn26{
-	background: url(../images/dw-icons1-24.png) no-repeat 999px 999px;
-	width: 95px;
-	height: 33px;
-	color: white;
-	font-size: 13px;
-	border: 0;
-	cursor: pointer;
-	display: inline-block;
-	zoom: 1;
-	letter-spacing: 1px;
-	line-height: 32px;
-	text-align: center;
-	text-decoration: none;
-	font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";
-}
-.sbtn26_0{
-	background-position: 0px -162px;
-}
-.sbtn26_0:hover{
-	background-position: 0px -273px;
-}
-body{
-	background: #E8E9EB;
-	/* background: url("../images/5629514927375932817.jpg") fixed 0px 0px;
-	background-size: cover; */
-}
- input[type='checkbox'],input[type='radio']:read-only{
+ input[type='checkbox'],input[type='radio']{
 	/* _vertical-align:-1px;
 	vertical-align:-2px;
 	margin-right: 5px; */
 	vertical-align: middle!important;
 	line-height: normal;
-	cursor: pointer;
+	/*cursor: pointer;*/
 	margin: 0px 5px!important;
 	padding: initial;
 	background-color: initial;
 	border: initial;
 }
-
-select option{
-	padding: 5px;
-}
-
-.inputSytle_1{
-	background: #fff url(../images/shadow-in.png?020) no-repeat;
-	border: 1px solid #cececf;
-	border-color: #83ABCB;
+textarea{
+	resize:none;
 	outline: none;
-	height: 17px;
-	padding: 6px 10px 5px;
-	font-size: 12px;
-}
-.tabbarDialog{
-	position: fixed;
-	z-index:200;
-	border:1px solid #c0c0c0;
-	background: white;
-	top:40px;
-	padding: 15px;
-	line-height: 1.4em;
-	font-family: "微软雅黑";
-	color: #444;
-	display: none;
-
-	filter:alpha(opacity=92); /*IE滤镜，透明度50%*/
-	-moz-opacity:0.92; /*Firefox私有，透明度50%*/
-	opacity:0.92;/*其他，透明度50%*/
-}
-.p_DialogContent{
-	margin: 5px;
-}
-.p_DialogContentTitle{
-	font-size: 16px;
 	padding: 5px;
-}
-.p_DialogContentRoot{
-	padding: 5px;
-	padding-left: 10px;
-}
-.p_DialogContentItem{
-	padding: 3px;
-}
-.tabbarDialogContent{
-	visibility: visible;
-}
-/**模板**/
-.pc_themeContentScorll{
-	width: 730px;
-	height: 460px;
-	overflow-y: scroll;
-}
-.pc_themeContent{
-	margin: -28px 0 0 -20px;
-}
-.tabbarDialog .themeitem{
-	display: inline;
-	margin: 28px 0 0 20px;
-	width: 220px;
-	overflow: hidden;
-	float: left;
-}
-.themeitem .themenail{
-	width: 200px;
-	height: 120px;
-	padding: 9px;
-	border: 1px solid #dfdfdf;
-	cursor: pointer;
-	background: #fff;
-}
-.themeitem .themenail img {
-	display: block;
-	width: 200px;
-	height: 120px;
-	border: none;
-}
-.themeitem h5{
-	padding: 8px 0 0;
-	font-size: 14px;
-	font-weight: normal;
-	background: url(../images/shadow.png?001) no-repeat center 0;
-	color: #444;
-	text-align: left;
-	line-height: 19px;
-}
-.theme_param_Group{
-	float: left;
-	margin: 0px;
-}
-.theme_param{
-	padding-right: 20px;
-	padding-left: 10px;
-}
-.theme_param.split .mainSplit{
-	height: 16px;
-	line-height: 16px;
-	margin-bottom: 16px;
-	border-bottom: 1px solid #efefef;
-	display: block;
-	clear: both;
-}
-.theme_param.image{
-	width: 350px;
-}
-.theme_param .image_box {
-	float: right;
-	width: 120px;
-	height: 30px;
-	margin-left: -60px;
-	border: none;
-}
-.image_box .image_box_img{
-	float: left;
-}
-.image_box_upload{
-	float: right;
-	padding-top: 2px;
-}
-.surveyUpImageQueueid{
-		position: absolute;
-}
-.theme_param.color {
-	height: 32px;
-	line-height: 32px;
-	padding: 6px 10px;
-	margin-right: 10px;
-}
-
-.theme_param .color_box {
-	float: right;
-	width: 50px;
-	height: 30px;
-	margin-left: -60px;
-	border: 1px solid #aaa;
-}
-
-.color .colorName {
-	margin-right: 60px;
-}
-.theme_param.color .isbgcolor .colorText {
-	height: 15px;
-	line-height: 15px;
-}
-.color .colorName .colorText {
-	width: 195px;
-}
-.thide {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
-	word-break: keep-all;
-}
-.theme_param.color .isbgcolor .bgcolortip {
-	display: block;
-	height: 15px;
-	line-height: 15px;
-	padding-top: 2px;
-	color: #aaa;
-	font-size: 12px;
-}
-.theme_param.image .bgcolortip{
-	margin-left: 8px;
-}
-
-.theme_param.if {
-	line-height: 24px;
-	margin-bottom: 10px;
-}
-.theme_param.fontStyle{
-	overflow: auto;
-}
-.theme_param.fontStyle .suveytextStyle{
-	overflow: auto;
-}
-.theme_param.fontStyle .suveytextStyle .suveytextStyleSelect{
-	float: left;
-	margin-top: 5px;
-}
-.tabbarDialog select{
-	padding: 5px;
-	outline: none;
-}
-.suveytextStyle{
-	padding: 5px;
-}
-.suveytextStyle label{
-	vertical-align: middle;
-}
-.suveytextStyle img{
-	vertical-align: middle;
-}
-body{
-	background-attachment: fixed;
 }
 #wrap{
 	/*如果浏览器小于1200，则设置wrap为1200*/
 	/* width: 1200px; */
 	margin: 0px auto;
-	padding: 0px;
-	height: 100%;
-	width: 100%;
-	background-attachment: fixed;
-	background-position: 0px 0px;
 }
-#preview_head{
+#header{
+	background: #122E57;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	overflow: auto;
 	zoom: 1;
-	height: 40px;
-	padding: 0px 10px;
+	width: 100%;
+	background: #24292c;
+  background: rgb(52, 73, 94);
+}
+.header_Item{
+	color: #F7F7F7;
+}
+#header_left{
+	float: left;
+	width: 500px;
+}
+#header_left img{
+	float: left;
+	margin-left: 15px;
+}
+#header_title{
+	color: #F7F7F7;
+	font-size: 14px;
+	margin-top:12px;
+	margin-left:10px;
+	float: left;
+	text-transform: capitalize;
+}
+#header_right{
+	float: right;
+	padding-right: 55px;
+	padding-top: 10px;
+}
+#header_right a{
+	color: #F7F7F7;
+	text-decoration: none;
+}
+#header_right a:hover{
+	text-decoration: underline;
+}
+
+#tools_wrap{
+	background: #D6DCE4;
+	/* margin-bottom: 15px; */
+	/* border-top: 2px solid #ED6C00; */
+	padding-top:1px;
 	position: fixed;
 	z-index:200;
 	width: 100%;
-	margin: 0px;
-	top:0px;
-	background: #eee url(../images/x.png) 0 -160px repeat-x;
+  height: 70px;
+	/* overflow:auto; */
 	box-shadow:  4px 1px 3px rgba(224, 229, 233, 0.44);
 }
-.leftTabbar{
 
+#tools{
+	width: 100%;
 }
-.leftTabbar ul{
+#tools .tools_tabs{
+	overflow: auto;
+	zoom: 1;
+	/* height: 25px; */
+}
+#tools .tools_tabs ul{
 	padding: 0px;
 	margin: 0px;
 	list-style: none;
 }
-.leftTabbar ul li{
+#tools .tools_tabs_left{
 	float: left;
-	display: block;
+	padding-left: 65px;
+	margin: 0px;
+}
+#tools .tools_tabs .tools_tabs_left ul li{
+	float: left;
+	padding: 3px 40px;
+	font-family: "新宋体";
 	font-size: 14px;
-	font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";
-}
-.leftTabbar ul li .tabbarTitle{
-	height: 40px;
-	line-height: 40px;
-	padding: 0 16px;
-	cursor: pointer;
-	white-space: nowrap;
-}
-.leftTabbar ul li.js-tabselected .tabbarTitle{
-	background-color: #373D42;
-	color: #fff;
-}
-.leftTabbar ul li.hover .tabbarTitle{
-	background-color: #a2a2a2;
-	color: #fff;
-}
-.centerTabbar{
-	margin: 0px auto;
-	margin-top:5px;
-	width:260px;
-	/* background-color: #111;
-	background-color: rgba(17,17,17,0.5);
-	color: #fff;
-	color: rgba(255,255,255,0.5);
-	border-right: 1px solid #111;
-	border-right: 1px solid rgba(17,17,17,0.3); */
-	color:#6E6E6E;
-	margin-left: 30px;
-}
-.centerTabbarBtn{
+	font-weight: 600;
+	font-style: normal;
 	text-decoration: none;
-	color: #6E6E6E;
-	/* color: #8DB800; */
-	height: 30px;
-	line-height: 30px;
-	padding: 5px 5px;
-	padding-right:10px;
+	border-top: 3px solid transparent;
+	color: #333333;
+	letter-spacing:2px;
+	margin-left:1px;
+	margin-top:1px;
 	cursor: pointer;
-	white-space: nowrap;
-	background: none;
-	font-size: 20px;
 }
-.centerTabbarBtn.active{
-	/* color: #fff; */
-	/* border:1px solid #A2A2A2; */
-	color: #222222;
-	color:#8DB800;
-	font-weight: bold;
-	font-size: 24px;
+#tools .tools_tabs .tools_tabs_left ul li:hover{
+	border-top: 3px solid #9AC600;
+	background: #E8EBEE;
 }
-a.centerTabbarBtn:hover{
-	color: #222222;
-	color:#8DB800;
-	font-size: 24px;
+#tools .tools_tabs .tools_tabs_left ul li.current{
+	border-top: 3px solid #9AC600;
+	background: #F7F7F7;
 }
-.rightTabbar{
+#tools .tools_tabs_right{
 	float: right;
-	margin-top: 5px;
-	margin-right: 20px;
+	padding-right: 20px;
 }
-#dwSurveyHeader{
-	/* background: url("../images/1351833968D86W5x.jpg") 30px;
-	background: url("../images/1279780388A5rVCG.jpg"); */
-	padding-top: 10px;
+#tools .tools_tabs .tools_tabs_right ul li{
+	float: left;
+	padding: 5px 8px;
+	font-family: Arial;
+	font-size: 13px;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	color: #333333;
 }
-#dwSurveyLogo{
-	height: 70px;
-	padding: 15px 25px;
-	padding-bottom: 0px;
+#tools .tools_tabs .tools_tabs_left ul li:hover{
+
+}
+/** 定义工具栏样式  **/
+.tools_tab_div{
 	display: none;
 }
-#dwSurveyLogo img{
-	border: 1px dashed #DDDDDD;
+#tools_tab1{
+	/* width: 950px; */
+	float:left;
+	overflow: auto;
+	position: relative;
+}
+#tools  .tools_contents{
+	background: #F7F7F7;
+	border-bottom: 1px solid #BCBCBC;
+	overflow: auto;
+	position: relative;
+	zoom:1;
+}
+.tools_item{
+	float: left;
+	border-right: 1px dashed #C7C7C7;
+	overflow: auto;
+	display: inline;
+}
+#toolsBashQu{
+	width: 491px;
+}
+#toolsChenQu{
+	width: 251px;
+}
+#toolsEvent{
+	width: 131px;
+}
+.tools_contents .toolbars{
+	background: #F7F7F7;
+	overflow: auto;
+	zoom: 1;
+	padding-right: 5px;
+}
+.tools_contents .tooltext{
+	height: 20px;
+	background: #F1F2F4;
+	font-size: 12px;
+	font-family: "新宋体";
+	color: #707781;
+	line-height: 20px;
+	text-align: center;
+	padding:3px 0px;
+	border-top: 1px dashed #C7C7C7;
+	width: 100%;
+}
+.toolbars ul{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	margin-left: 5px;
+}
+.toolbars ul li{
+	float:left;
+	margin: 5px 5px;
+	padding: 0px;
+	display: inline;
+	*width: 50px;
+	/* border: 1px solid #cc3333; */
+}
+.toolbars ul li .dwToolbar_icon{
+	background: transparent url("../images/toolbar.png") 0px 0px no-repeat;
+	width: 50px;
+	height: 60px;
+	margin: 0px;
+	display:block;
+	padding: 0px;
+}
+.toolbars ul li .dwQuTypeModel{
+	display: none;
+}
+/* 工具栏单选题 */
+#radioQuModel .dwToolbar_icon{
+	background-position: -0px -6px;
+}
+#radioQuModel:hover .dwToolbar_icon,#radioQuModel.hover .dwToolbar_icon{
+	background-position: -0px -74px;
+}
+
+#checkboxQuModel .dwToolbar_icon{
+	background-position: -57px -6px;
+}
+#checkboxQuModel:hover .dwToolbar_icon,#checkboxQuModel.hover .dwToolbar_icon{
+	background-position: -57px -74px;
+}
+
+#fillblankQuModel .dwToolbar_icon{
+	background-position: -113px -6px;
+}
+#fillblankQuModel:hover .dwToolbar_icon,#fillblankQuModel.hover .dwToolbar_icon{
+	background-position: -113px -74px;
+}
+
+#scoreQuModel .dwToolbar_icon{
+	background-position: -170px -6px;
+}
+#scoreQuModel:hover .dwToolbar_icon,#scoreQuModel.hover .dwToolbar_icon{
+	background-position: -170px -74px;
+}
+
+#selectQuModel .dwToolbar_icon{
+	background-position: -908px -6px;
+}
+#selectQuModel:hover .dwToolbar_icon,#selectQuModel.hover .dwToolbar_icon{
+	background-position: -908px -74px;
+}
+#timeQuModel .dwToolbar_icon{
+	background-position: -850px -6px;
+}
+#timeQuModel:hover .dwToolbar_icon,#selectQuModel.hover .dwToolbar_icon{
+	background-position: -850px -74px;
+}
+
+#orderQuModel .dwToolbar_icon{
+	background-position: -227px -6px;
+}
+#orderQuModel:hover .dwToolbar_icon,#orderQuModel.hover .dwToolbar_icon{
+	background-position: -227px -74px;
+}
+
+#pageQuModel .dwToolbar_icon{
+	background-position: -283px -6px;
+}
+#pageQuModel:hover .dwToolbar_icon,#pageQuModel.hover .dwToolbar_icon{
+	background-position: -283px -74px;
+}
+
+#paragraphQuModel .dwToolbar_icon{
+	background-position: -340px -6px;
+}
+#paragraphQuModel:hover .dwToolbar_icon,#paragraphQuModel.hover .dwToolbar_icon{
+	background-position: -340px -74px;
+}
+
+#mfillblankQuModel .dwToolbar_icon{
+	background-position: -397px -6px;
+}
+#mfillblankQuModel:hover .dwToolbar_icon,#mfillblankQuModel.hover .dwToolbar_icon{
+	background-position: -397px -74px;
+}
+/** 矩阵题 **/
+#chenRadioQuModel .dwToolbar_icon{
+	background-position: -454px -6px;
+}
+#chenRadioQuModel:hover .dwToolbar_icon,#chenRadioQuModel.hover .dwToolbar_icon{
+	background-position: -454px -74px;
+}
+
+#chenCheckboxQuModel .dwToolbar_icon{
+	background-position: -510px -6px;
+}
+#chenCheckboxQuModel:hover .dwToolbar_icon,#chenCheckboxQuModel.hover .dwToolbar_icon{
+	background-position: -510px -74px;
+}
+
+#chenScoreQuModel .dwToolbar_icon{
+	background-position: -567px -6px;
+}
+#chenScoreQuModel:hover .dwToolbar_icon,#chenScoreQuModel.hover .dwToolbar_icon{
+	background-position: -567px -74px;
+}
+
+#chenFillblankQuModel .dwToolbar_icon{
+	background-position: -624px -6px;
+}
+#chenFillblankQuModel:hover .dwToolbar_icon,#chenFillblankQuModel.hover .dwToolbar_icon{
+	background-position: -624px -74px;
+}
+
+#exportToolbar .dwToolbar_icon{
+	background-position: -680px -6px;
+}
+#exportToolbar:hover .dwToolbar_icon,#exportToolbar.hover .dwToolbar_icon{
+	background-position: -680px -74px;
+}
+
+#logicToolbar .dwToolbar_icon{
+	background-position: -737px -6px;
+}
+#logicToolbar:hover .dwToolbar_icon,#logicToolbar.hover .dwToolbar_icon{
+	background-position: -737px -74px;
+}
+
+#qubankToolbar .dwToolbar_icon{
+	background-position: -794px -6px;
+}
+#qubankToolbar:hover .dwToolbar_icon,#qubankToolbar.hover .dwToolbar_icon{
+	background-position: -794px -74px;
+}
+
+#surveyAttrSetToolbar .dwToolbar_icon{
+	background-position: -680px -250px;
+}
+#surveyAttrSetToolbar:hover .dwToolbar_icon,#surveyAttrSetToolbar.hover .dwToolbar_icon{
+	background-position: -680px -320px;
+}
+
+#surveyStyleEditToolbar .dwToolbar_icon{
+	background-position: -738px -250px;
+}
+#surveyStyleEditToolbar:hover .dwToolbar_icon,#surveyStyleEditToolbar.hover .dwToolbar_icon{
+	background-position: -738px -320px;
+}
+
+/**更多题型**/
+#userNameQuModel .dwToolbar_icon{
+	background-position: -113px -250px;
+}
+#userNameQuModel:hover .dwToolbar_icon,#userNameQuModel.hover .dwToolbar_icon{
+	background-position: -113px -320px;
+}
+
+#phoneNoQuModel .dwToolbar_icon{
+	background-position: -56px -250px;
+}
+#phoneNoQuModel:hover .dwToolbar_icon,#phoneNoQuModel.hover .dwToolbar_icon{
+	background-position: -56px -320px;
+}
+
+#addressQuModel .dwToolbar_icon{
+	background-position: -170px -250px;
+}
+#addressQuModel:hover .dwToolbar_icon,#addressQuModel.hover .dwToolbar_icon{
+	background-position: -170px -320px;
+}
+
+#birthdayQuModel .dwToolbar_icon{
+	background-position: -283px -250px;
+}
+#birthdayQuModel:hover .dwToolbar_icon,#birthdayQuModel.hover .dwToolbar_icon{
+	background-position: -283px -320px;
+}
+
+#emailQuModel .dwToolbar_icon{
+	background-position: -0px -250px;
+}
+#emailQuModel:hover .dwToolbar_icon,#emailQuModel.hover .dwToolbar_icon{
+	background-position: -0px -320px;
+}
+
+#genderQuModel .dwToolbar_icon{
+	background-position: -568px -250px;
+}
+#genderQuModel:hover .dwToolbar_icon,#genderQuModel.hover .dwToolbar_icon{
+	background-position: -568px -320px;
+}
+#educationQuModel .dwToolbar_icon{
+	background-position: -398px -250px;
+}
+#educationQuModel:hover .dwToolbar_icon,#educationQuModel.hover .dwToolbar_icon{
+	background-position: -398px -320px;
+}
+#companyQuModel .dwToolbar_icon{
+	background-position: -343px -250px;
+}
+#companyQuModel:hover .dwToolbar_icon,#companyQuModel.hover .dwToolbar_icon{
+	background-position: -343px -320px;
+}
+#cityQuModel .dwToolbar_icon{
+	background-position: -455px -250px;
+}
+#cityQuModel:hover .dwToolbar_icon,#cityQuModel.hover .dwToolbar_icon{
+	background-position: -455px -320px;
+}
+#maritalQuModel .dwToolbar_icon{
+	background-position: -229px -250px;
+}
+#maritalQuModel:hover .dwToolbar_icon,#maritalQuModel.hover .dwToolbar_icon{
+	background-position: -229px -320px;
+}
+#salaryQuModel .dwToolbar_icon{
+	background-position: -511px -250px;
+}
+#salaryQuModel:hover .dwToolbar_icon,#salaryQuModel.hover .dwToolbar_icon{
+	background-position: -511px -320px;
+}
+#dateQuModel .dwToolbar_icon{
+	background-position: -626px -250px;
+}
+#dateQuModel:hover .dwToolbar_icon,#dateQuModel.hover .dwToolbar_icon{
+	background-position: -626px -320px;
+}
+#uploadFileQuModel .dwToolbar_icon{background-position:-1135px -6px}#uploadFileQuModel.hover .dwToolbar_icon,#uploadFileQuModel:hover .dwToolbar_icon{background-position:-1135px -77px}
+#publishBtn .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -0px -145px;
+}
+#publishBtn:hover .dwToolbar_icon,#publishBtn.hover .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -0px -199px;
+}
+
+#saveBtn .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -90px -145px;
+}
+#saveBtn:hover .dwToolbar_icon,#saveBtn.hover .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -90px -200px;
+}
+
+#previewBtn .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -180px -145px;
+}
+#previewBtn:hover .dwToolbar_icon,#previewBtn.hover .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -180px -199px;
+}
+#saveＭodelBtn .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -0px -199px;
+}
+#saveＭodelBtn:hover .dwToolbar_icon,#saveＭodelBtn.hover .dwToolbar_icon{
+	width:70px;
+	height:39px;
+	background-position: -0px -199px;
+}
+
+#toolsPubBtn{
+	position:absolute;
+	*position: relative;
+	display:inline;
+	z-index: 300;
+	right:0px;
+	float:right;
+	background: none;
+}
+#toolsPubBtn .toolbars{
+	background: none;
+}
+#dw_body_left{
+	width: 190px;
+	height: 600px;
+	border: 1px solid #c8c9cc;
+	border-left:none;
+	background: #FAFAFA;
+	position: fixed;
+	float:left;
+	left: 0px;
+	top:190px;
+	z-index: 1;
+    display: none;
+}
+#dwBodyLeftContent{
+	padding-top: 10px;
+	color: #333;
+}
+#dwBodyLeftContent h2 {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+#dwBodyLeftContent h2, #dwBodyLeftContent h3 {
+	font-size: 14px;
+	font-family:"微软雅黑";
+	font-weight: normal;
+	line-height: 24px;
+	margin: 0;
+	padding: 0px;
+	width: 160px;
+}
+#dwBodyLeftContent h3 {
+	padding: 0 8px 0 25px;
+}
+#dwBodyLeftContent a {
+	text-decoration: none;
+	display: inline-block;
+	padding:0px 5px;
+	color: #707781;
+	width: 170px;
+}
+#dwBodyLeftContent a:hover{
+	background: #F1F2F4;
+	color: #4c6c99;
+}
+#dw_body_right{
+	width: 190px;
+	height: 600px;
+	border: 1px solid #c8c9cc;
+	background: #FAFAFA;
+	border-right: none;
+	position: fixed;
+	right: 0px;
+	top:190px;
+	z-index: 1;
+	float: right;
 }
 #dw_body{
-	padding-top: 65px;
+	margin-top: 135px;
+	/* padding-bottom: 50px; */
+	padding-bottom: 40px;
 }
 #dw_body .dw_body_title{
 	background: #F0F1F4;
@@ -412,29 +583,14 @@ a.centerTabbarBtn:hover{
 }
 #dw_body_content{
 	background:white;
-	border: 1px solid #DDE1E7;
-	border: none;
+	width: 780px;
+	margin: 0px auto;
+	border: 1px solid #c8c9cc;
 	/* height: 600px; */
 	position: relative;
 	z-index: 50;
-	width: 900px;
-	margin: 0px auto;
-	padding: 0px;
 }
 /* 编辑内容区 */
-#dwSurveyTitle{
-	text-align: center;
-	outline-style: none;
-	font-weight: none;
-	font-family:"微软雅黑";
-	font-size: 21px;
-	letter-spacing:1px;
-	color:#222222;
-	padding: 5px;
-}
-#dwSurveyTitle.noLogoImg{
-	padding-top: 15px;
-}
 #dwSurveyTitle{
 	margin: 0px 50px;
 	margin-top: 10px;
@@ -442,11 +598,11 @@ a.centerTabbarBtn:hover{
 #dwSurveyName{
 	text-align: center;
 	outline-style: none;
-	font-weight: none;
+	font-weight: normal;
 	font-family:"微软雅黑";
 	font-size: 21px;
 	letter-spacing:1px;
-	/* color:#222222; */
+	color:#222222;
 	cursor:text;
 	overflow: auto;
 	width: 680px;
@@ -455,9 +611,10 @@ a.centerTabbarBtn:hover{
 }
 #dwSurveyNote{
 	/* border: 1px solid transparent; */
-	margin: 0px 20px;
-	padding-top:5px;
-	padding-bottom: 20px;
+	margin: 5px 50px;
+}
+#dwSurveyNote:hover{
+	background: #FDF9CD;
 }
 #dwSurveyNote.click{
 	border: 1px solid #98C5C3;
@@ -473,7 +630,7 @@ a.centerTabbarBtn:hover{
 	/* background: #DDE1E7;
 	background: #D4E0E0; */
 	border: 1px solid #98C5C3;
-	right: 30px;
+	right: 35px;
 	margin-top: -27px;
 	display: none;
 	font-size: 12px;
@@ -481,6 +638,10 @@ a.centerTabbarBtn:hover{
 	text-align: center;
 	cursor: pointer;
 	color: #5D5D5D;
+}
+#dwSurveyNoteTools:hover{
+	background: #98C5C3;
+	color: #333333;
 }
 #dwSurveyNoteEdit{
 	font-size: 16px;
@@ -493,16 +654,24 @@ a.centerTabbarBtn:hover{
 	padding-bottom:5px;
 	cursor: text;
 	font-family: "微软雅黑";
+	overflow: auto;
+	max-width: 720px;
+	width:680px;
+	min-height: 30px;
 }
 .editAble{
 	outline-style: none;
+	color: #333333;
 	font-family: "微软雅黑";
 	vertical-align: middle;
 	cursor: text;
 	display: inline-block;
-	/* max-width: 600px; */
+	max-width: 750px;
 	table-layout: fixed;
 	word-break: break-all;
+}
+.editAble:hover,.quCoItemUlLi.hover .editAble{
+	background: #FDF9CD;
 }
 .editAble img,.editAble embed,.editAble object,
 #dwComEditContent img,#dwComEditContent embed,#dwComEditContent object{
@@ -521,21 +690,9 @@ a.centerTabbarBtn:hover{
 	border: 1px solid #C9C9C9;
 	background: #FAFAFA;
 }
-#dwSurveyQuContent{
-	/* background: url("../images/1351833968D86W5x.jpg"); */
-}
-#dwSurveyQuContentBg{
-	background: white;
-	padding: 20px 30px;
-	padding-top: 5px;
-/*
-	filter:alpha(opacity=90); IE滤镜，透明度50%
-	-moz-opacity:0.9; Firefox私有，透明度50%
-	opacity:0.9;其他，透明度50%
-*/
-}
 #dwSurveyQuContentAppUl{
 	list-style: none;
+	padding-bottom: 200px;
 }
 /**题目开始**/
 .surveyQuItemBody{
@@ -551,33 +708,44 @@ a.centerTabbarBtn:hover{
 }
 .surveyQuItem{
 	overflow: auto;
-	margin-top: 0px;
-	border: 1px solid transparent;
-	/* border: 1px solid #C9C9C9; */
+	margin-top: 1px;
+	/*border: 1px solid transparent;*/
+  border: 2px solid #C9C9C9;
 	border-left: none;
 	border-right: none;
-	background: none;
-}
-.surveyQuItemBody.hover .surveyQuItem{
-/* 	background: #FAFAFA; */
-	border: 1px solid #C9C9C9;
-	border-left: none;
-	border-right: none;
+  background-color:rgba(220,38,38,0.05);
 }
 .surveyQuItemBody .initLine{
 	width: 100%;
 	height: 8px;
 	background: #299995;
-	visibility: hidden;
+	/* visibility: hidden; */
+	display: none;
 }
 .surveyQuItemBody.showLine .initLine{
 	visibility: visible;
 }
+.surveyQuItemBody.hover .surveyQuItem{
+/* 	background: #FAFAFA; */
+	border: 1px solid #C9C9C9;
+	border: 1px solid transparent;
+	border-left: none;
+	border-right: none;
+}
 /**jquery ui sort 实现  上面是老的实现 **/
+#dwSurveyQuContentAppUl li{
+	border-top: 1px dashed transparent;
+	border-bottom: 1px dashed transparent;
+}
 #dwSurveyQuContentAppUl li.showLine{
+/* 显示线条的方式*/
 	width: 100%;
-	height: 8px;
-	background: #299995;
+	height: 60px;
+	/* border-top:1px solid #299995;
+	border-bottom:1px solid #299995; */
+	background: #F1F2F4;
+	border-top: 1px dashed #C7C7C7;
+	border-bottom: 1px dashed #C7C7C7;
 }
 /**题目功能区**/
 /** 题目左边 设置，逻辑，删除 **/
@@ -585,7 +753,7 @@ a.centerTabbarBtn:hover{
 	float: left;
 	width: 40px;
 	text-align: center;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 .surveyQuItemLeftToolsUl{
 	padding: 0px;
@@ -593,8 +761,8 @@ a.centerTabbarBtn:hover{
 	list-style: none;
 	/* display: none; */
 	visibility: hidden;
+  width: 140px;
 }
-
 .surveyQuItemLeftToolsUl li{
 	margin: 5px auto;
 	font-size: 12px;
@@ -608,6 +776,12 @@ a.centerTabbarBtn:hover{
 	width: 23px;
 	height: 23px;
 	margin: 0px auto;
+}
+li.dwQuMove{
+	cursor: move;
+}
+li.dwQuMove .dwQuIcon{
+	background-position: -336px -153px;
 }
 li.dwQuSet .dwQuIcon{
 	background-position: -280px -153px;
@@ -663,8 +837,8 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 	position: absolute;
 	background: white;
 	border: 1px solid #98C5C3;
-	border-right:none;
-	right: 0px;
+	border:none;
+	right: -23px;
 	margin-top: 40px;
 	font-size: 12px;
 	line-height: 25px;
@@ -696,32 +870,27 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 
 /** 题目内容区 **/
 .surveyQuItem .surveyQuItemContent{
-	padding: 0px;
-	border: none;
-	min-height: 50px;
-	width: 100%;
-  -moz-user-select: none;
-  -webkit-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
-  readonly: true
+	float: left;
+	padding-left: 10px;
+	border-left: 1px solid transparent;
+	min-height: 100px;
+	width: 700px;
 }
 .surveyQuItemBody.hover .surveyQuItemContent{
  	border-left: 1px solid #DDE1E7;
+ 	border-left: 1px solid transparent;
 }
 .surveyQuItemContent{
 	padding: 2px 25px;
 	/* padding-bottom: 20px;
 	cursor: move; */
-	margin-bottom: 15px;
 }
 .surveyQuItemContent .quCoTitle{
 	font-size: 16px;
-	color: #333333;
+	color: rgb(51, 51, 51);
 	font-family: "微软雅黑";
 	line-height: 1.4em;
 	overflow: auto;
-	margin-bottom: 0px;
 }
 .quCoNum{
 
@@ -733,10 +902,9 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 .quCoTitle .quCoTitleEdit{
 	float: left;
 	padding: 5px 3px ;
+	width: 600px;
 	cursor: text;
-	table-layout:fixed;
-	word-break: break-all;
-	width: 90%;
+	table-layout:fixed; word-break: break-all;
 }
 .surveyQuItemContent .quCoItem{
 	margin-top: 0px;
@@ -770,8 +938,9 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 .surveyQuItemContent .quCoItem ul li label{
 	vertical-align: middle;
 	cursor: text;
+
 	display: inline-block;
-	/* max-width: 600px; */
+	max-width: 600px;
 	table-layout:fixed; word-break: break-all;
 }
 /**按列的形式显示选项，使用表格**/
@@ -789,7 +958,7 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 	line-height: 1.4em;
 }
 .surveyQuItemContent .quCoItem table.tableQuColItem tr td label{
-	/* padding:3px 0px; */
+	padding:3px 0px;
 	vertical-align: middle;
 	cursor: text;
 
@@ -801,8 +970,8 @@ li.dwQuLogic  .dwQuIcon  .quLogicInfo{
 .surveyQuItemContent .quCoBottomTools{
 	visibility: hidden;
 	padding-top: 3px;
-	padding-bottom: 12px;
-	padding-left: 10px;
+	padding-bottom: 5px;
+	padding-left: 0;
 	overflow: auto;
 }
 .surveyQuItemContent .quCoBottomTools ul{
@@ -839,8 +1008,8 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	/* background: #D6DCE4; */
 }
 /** 移入时显示左右功能按钮 **/
-.surveyQuItemBody.hover .surveyQuItemLeftToolsUl,
-.surveyQuItemBody.hover .quCoBottomTools,
+/*.surveyQuItemBody .surveyQuItemLeftToolsUl,*/
+.surveyQuItemBody .quCoBottomTools,
 .surveyQuItemBody.hover .quCoRightTools{
 	visibility: visible;
 }
@@ -872,7 +1041,7 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	list-style: none;
 }
 .editMenuRoot .editMenuList ul li{
-	font: 12px;
+	font-size: 12px;
 	background: #E0E6E9;
 	padding: 5px;
 	border: 1px solid #98C5C3;
@@ -959,6 +1128,51 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 
 	table-layout:fixed; word-break: break-all;
 }
+/** 问卷标题 **/
+#dwCommonEditRoot.svyName #dwComEditContent{
+	text-align: center;
+	outline-style: none;
+	font-weight: normal;
+	font-size: 21px;
+	letter-spacing:1px;
+	color:#222222;
+	cursor:text;
+	padding-top:2px;
+	padding-bottom:1px;
+	line-height:1.4em;
+	overflow: auto;
+}
+#dwCommonEditRoot.svyName .dwComEditMenuBtn{
+	width: 30px;
+	height: 32px;
+	background-position:-392px -150px;
+}
+#dwCommonEditRoot.svyName .dwComEditMenuUl{
+	margin-top:32px;
+	right:-32px;
+}
+/** 问卷欢迎语编辑 **/
+#dwCommonEditRoot.svyNoteEdit #dwComEditContent{
+	font-size: 16px;
+	outline-style: none;
+	/* text-indent: 2em; */
+	line-height: 1.4em;
+	color: #333333;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: text;
+	font-family: "微软雅黑";
+}
+#dwCommonEditRoot.svyNoteEdit .dwComEditMenuBtn{
+	width: 30px;
+	height: 32px;
+	background-position:-392px -150px;
+}
+#dwCommonEditRoot.svyNoteEdit .dwComEditMenuUl{
+	margin-top:32px;
+	right:-32px;
+}
 /** 编辑题目标题时样式  **/
 #dwCommonEditRoot.quEdit .dwCommonEdit{
 	width:600px;
@@ -980,6 +1194,7 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 #dwCommonEditRoot.quEdit .dwComEditOptionUl{
 	display: none;
 }
+
 /**编辑题目选项是样式**/
 #dwCommonEditRoot.quOptionEdit .dwCommonEdit{
 	width: 200px;
@@ -1030,6 +1245,7 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	height: 28px;
 	background-position:-392px -179px;
 }
+
 /** 弹出窗口代码 **/
 #dwCommonDialog{
 	position: absolute;
@@ -1038,6 +1254,7 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	left: 200px;
 	background: #FAFAFA;
 	display: none;
+	min-width: 504px;
 }
 #dwCommonDialog .dwCommonRefIcon{
 	position: absolute;
@@ -1045,13 +1262,10 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	z-index: 99;
 	width: 30px;
 	border-bottom: none!important;
-	left: -14px;
 	top: 7px;
 }
 .dwCommonRefIcon .dwCommonRefIcon1{
 	border-width: 7px;
-	border-style: dashed solid dashed dashed;
-	border-color: transparent #EFEFEF transparent transparent;
 	z-index: 3;
 	left: 1px;
 	font: 0px/9999px serif;
@@ -1063,8 +1277,6 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 }
 .dwCommonRefIcon .dwCommonRefIcon2{
 	border-width: 7px;
-	border-style: dashed solid dashed dashed;
-	border-color: transparent #0D75AD transparent transparent;
 	font: 0px/9999px serif;
 	overflow: hidden;
 	position: absolute;
@@ -1073,6 +1285,30 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	height: 0px;
 	color: inherit;
 }
+#dwCommonDialog .dwCommonRefIcon.left{
+	left: -14px;
+}
+.dwCommonRefIcon.left .dwCommonRefIcon1{
+	border-style: dashed solid dashed dashed;
+	border-color: transparent #EFEFEF transparent transparent;
+}
+.dwCommonRefIcon.left .dwCommonRefIcon2{
+	border-style: dashed solid dashed dashed;
+	border-color: transparent #0D75AD transparent transparent;
+}
+#dwCommonDialog .dwCommonRefIcon.right{
+	right: -30px;
+}
+.dwCommonRefIcon.right .dwCommonRefIcon1{
+	left: -1px;
+	border-color: transparent transparent transparent rgb(239, 239, 239);
+	border-style: dashed dashed dashed solid;
+}
+.dwCommonRefIcon.right .dwCommonRefIcon2{
+	border-color: transparent transparent transparent rgb(84, 139, 167);
+	border-style: dashed dashed dashed solid;
+}
+
 #dwCommonDialog .dwCommonDialogBody{
 	border: 1px solid #62A3C6;
 	/* width: 500px;
@@ -1100,24 +1336,24 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	display: none;
 }
 
-.dwQuSetCon{
+.dwQuFormSetDialog{
 	width: 450px;
 	padding: 0px 30px;
 }
-.dwQuSetCon ul{
+.dwQuFormSetDialog ul{
 	list-style: none;
 	padding: 10px 0px;
 	padding-bottom:0px;
 	margin: 0px;
 }
-.dwQuSetCon ul li{
+.dwQuFormSetDialog ul li{
 	font-size: 14px;
 	color: #333333;
 	font-family: "微软雅黑";
 	padding: 2px 5px;
 	margin: 2px;
 }
-.dwQuSetCon ul li select,.dwQuSetCon ul li input{
+.dwQuFormSetDialog ul li select,.dwQuFormSetDialog ul li input{
 	padding: 5px;
 	color: #333333;
 	border: 1px solid #98C5C3;
@@ -1136,6 +1372,9 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	outline: none;
 	cursor: pointer;
 	float: right;
+}
+.quDialogBtn-1{
+	background-color: #869686;
 }
 .quDialogBtn:hover{
 	background: #0AA5A0;
@@ -1224,32 +1463,35 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 .dwQuDialogLoad img{
 
 }
-
-.surveyQuItemBody.hover .quFillblankItem .dwComEditMenuBtn{
-/* 	display: inline; */
+#modelUIDialogContent{
+	padding: 10px 20px;
 }
-.quCoItemUlLi.hover .quFillblankItem .dwComEditMenuBtn{
-	display: inline;
+#modelUIDialogContent input{
+	outline: none;
 }
-
-
-
-/* .quCoItemUlLi label{
-	background: url("http://y0.ifengimg.com/b038735baea2cb5e/2013/0626/d07.gif") 0px 0px no-repeat;
-	background-position: -10px -14px;
-	padding-left: 30px;
-	padding-top: 3px;
+#modelUIDialogContent select{
+	outline: none;
 }
-
-.quCoItemUlLi input{
+/** 选项设置  **/
+.quOptionFillContentLi,.quOptionFillRequiredLi{
 	display: none;
 }
- */
+.optionInpText{
+	padding:5px;
+	margin-left:5px;
+	margin-top:5px;
+}
 
+.surveyQuItemBody.hover .quFillblankItem .dwFbMenuBtn{
+/* 	display: inline; */
+}
+.quCoItemUlLi.hover .quFillblankItem .dwFbMenuBtn{
+	display: inline;
+}
 .quFillblankItem{
 	position: relative;
 }
-.quFillblankItem .dwComEditMenuBtn{
+.quFillblankItem .dwFbMenuBtn{
 	position: absolute;
 	border: 1px solid #98C5C3;
 	background: transparent url("../images/toolbar.png") 0px 0px no-repeat;
@@ -1257,9 +1499,9 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	background-color: #DBE5F1;
 	display: none;
 	width: 23px;
-	height: 28px;
+	height: 27px;
 	background-position:-392px -179px;
-	margin-left: -2px;
+	margin-left: -1px;
 }
 /**评分题**/
 .quCoItemTable{
@@ -1274,15 +1516,11 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	border: 1px solid #DDE1E7;
 	width: 300px;
 	margin-top: 2px;
-	background: url("../images/style-model/piont_lv.png");
-	background-repeat: repeat;
 }
 .scoreNumTable tr td{
 	text-align: center;
 	font-size: 12px;
 	padding: 0px;
-	border: solid 1px white;
-	cursor: pointer;
 }
 .quOptionEditTd .editAble{
 	width: 100%;
@@ -1298,11 +1536,6 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	margin: 0px! important;
 	padding: 7px 5px;
 }
-.quOrderByLeft ul li label{
-	background: white;
-	padding:0px 5px;
-	cursor: pointer! important;
-}
 .quOrderByLeft .quCoOptionEdit{
 	width: 280px;
 	border: 1px solid #CCCCCC;
@@ -1315,9 +1548,8 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 .quOrderByTable{
 	border-collapse: collapse;
 	border-spacing: 0;
-	width: 360px;
+	width: 330px;
 }
-
 .quOrderByTable tr td{
 	padding: 8px;
 	border: 1px solid #dbdbdb;
@@ -1330,32 +1562,8 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	text-align: center;
 	padding: 8px;
 	border: 1px solid #dbdbdb;
-	border-right:none;
 	width: 30px;
 }
-.quOrderTabConnect .quCoOptionEdit{
-	display: none;
-}
-.quOrderItemLabel{
-	background: white;
-	padding: 0px 5px;
-	border: 1px solid #BCBCBC;
-	cursor: pointer;
-	font-size: 12px;
-	vertical-align: middle;
-	display: inline-block;
-	table-layout: fixed;
-	word-break: break-all;
-	font-size: 14px;
-	font-family: "微软雅黑";
-	color: #333333;
-	line-height: 1.4em;
-	/* width: 280px; */
-}
-.qu-order-highlight{
-	display: none;
-}
-
 /**分页题*/
 .pageQuContent{
 	text-align: right;
@@ -1369,6 +1577,7 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 .pageBorderTop{
 	margin:0px 10px;
 	border-top: 3px solid transparent;
+	border-top: 3px solid #D6DCE4;
 }
 .pageBorderTop.nohover{
 	border-top: 3px solid #D6DCE4;
@@ -1410,13 +1619,13 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 
 /**矩陈题**/
 .quCoItemLeftChenTableDiv{
+	float: left;
 	overflow: auto;
-	padding-top: 6px;
 }
 table.quCoChenTable{
 	padding: 0px;
 	margin: 0px;
-	width:90%;
+	width: 650px;
 	border: 1px solid #dddddd;
 	border-collapse: separate;
 	border-left: 0;
@@ -1474,315 +1683,63 @@ table.quCoChenTable tr td label{
 .surveyQuItemContent .quCoRightTools ul li.addMoreOption{
 	margin-left: 2px;
 }
-
-.dwTextStyleSet {
-	float: left;
-	margin-left: 20px;
-}
-.dwTextStyleSetItem {
+.contactsFieldLi{
 	display: none;
-	float: left;
-	margin-top: 5px;
-	position: relative;
-}
-.dwStyleSetComm{
-	display: inline-block;
-	float: left;
-}
-.dwStyleSetComm a{
-	display: inline-block;
-	float: left;
-	margin: 0 6px 5px 0;
-	border: 1px solid #a6a6a6;
-	border-bottom-color: #979797;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0px;
-	-moz-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
-	box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
-	background: #e4e4e4;
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e4e4e4));
-	background-image: -moz-linear-gradient(top,#fff,#e4e4e4);
-	background-image: -webkit-linear-gradient(top,#fff,#e4e4e4);
-	background-image: -o-linear-gradient(top,#fff,#e4e4e4);
-	background-image: -ms-linear-gradient(top,#fff,#e4e4e4);
-	background-image: linear-gradient(top,#fff,#e4e4e4);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#ffffff',endColorstr='#e4e4e4');
-}
-.dwStyleFontFamilyText{
-	max-width: 60px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	line-height: 26px;
-	padding-left: 10px;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	float: left;
-	cursor: default;
-	color: #474747;
-	text-shadow: 0 1px 0 rgba(255,255,255,.5);
-	width: 60px;
-	background-position:  0px 0px;
-	background-attachment: fixed;
-}
-.dwStyleFontSizeText{
-	line-height: 26px;
-	padding-left: 10px;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	float: left;
-	cursor: default;
-	color: #474747;
-	text-shadow: 0 1px 0 rgba(255,255,255,.5);
-	width: 30px;
-	margin-bottom: -1px;
-	margin-top: 1px;
-}
-.dwStyleSelectOpen{
-	cursor: default;
-	display: inline-block;
-	font-size: 0;
-	height: 19px;
-	line-height: 17px;
-	margin: 1px 7px 1px;
-	width: 5px;
-}
-.dwStyleSelectOpenIcon{
-	margin: 11px 0 0;
-	float: left;
-	height: 0;
-	width: 0;
-	font-size: 0;
-	border-left: 3px solid transparent;
-	border-right: 3px solid transparent;
-	border-top: 3px solid #8D5858;
-}
-.dwStyleSetCommGroup{
-	float: left;
-	margin: 0 6px 5px 0;
-	border: 1px solid #a6a6a6;
-	border-bottom-color: #979797;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0px;
-	-moz-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
-	box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
-	background: #e4e4e4;
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e4e4e4));
-	background-image: -moz-linear-gradient(top,#fff,#e4e4e4);
-	background-image: -webkit-linear-gradient(top,#fff,#e4e4e4);
-	background-image: -o-linear-gradient(top,#fff,#e4e4e4);
-	background-image: -ms-linear-gradient(top,#fff,#e4e4e4);
-	background-image: linear-gradient(top,#fff,#e4e4e4);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#ffffff',endColorstr='#e4e4e4');
 }
 
-.dwStyleSetCommGroupButton{
-	display: inline-block;
-	height: 18px;
+select option{
+	padding: 5px;
+}
+.inputSytle_1{
+	background: #fff url(../images/shadow-in.png?020) no-repeat;
+	border: 1px solid #cececf;
+	outline: none;
+	height: 17px;
 	padding: 4px 6px;
-	outline: 0;
-	cursor: default;
-	float: left;
-	border: 0;
+	font-size: 12px;
 }
-
-.dwStyelSetButton_icon {
-	cursor: inherit;
-	margin-top: 1px;
-	width: 16px;
-	height: 16px;
-	float: left;
-	display: inline-block;
-	background: url('../images/icons16.png');
-}
-.dwButtonTextColor{
-	background-position:  0 -256px;
-	margin-right: .5em;
-	vertical-align: middle;
-}
-.dwButtonBold{
-	background-position:  0 -128px;
-}
-.dwButtonItalic{
-	background-position:  -33px -128px;
-}
-.dwButtonUnderline{
-	background-position:  -63px -128px;
-}
-.dwStyleSetCommGroup a:hover,.dwStyleSetComm a:hover{
-	background: #E9E9E9;
-}
-.dwButtonTextColorLine {
-	position: absolute;
-	height: 2px;
-	width: 17px;
-	top: 20px;
-	background: #000;
-}
-.dwStyleTextColorOpenIcon{
-	display: inline-block;
-	margin: 8px 0 0 1px;
-	width: 0;
-	height: 0;
-	cursor: default;
-	vertical-align: top;
-	border-left: 3px solid transparent;
-	border-right: 3px solid transparent;
-	border-top: 3px solid #474747;
-}
-
-.frmItem{
-	padding:12px 5px;
-}
-.frmItem a{
-	color: #5B9FD0;
-	text-decoration: none;
-}
-.frm_label{
-	text-align: left;
-	width: 65px;
-	cursor: default;
-	float: left;
-	margin-top: 12px;
-	font-size: 16px;
-	color: #777;
-}
-.frm_controls{
-	overflow: hidden;
-	font-size: 14px;
-}
-.frm_desc {
-	display: block;
-	color: #929292;
-	font-size: 14px;
-	margin-top: 3px;
-	display: none;
-}
-.auth-code {
-	display: inline-block;
-	border: 1px solid #9C94A9;
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
+.tabbarDialog{
+	position: fixed;
+	z-index:200;
+	border:1px solid #c0c0c0;
 	background: white;
-	padding-left: 3px;
-}
-.auth-code input{
-	border: none;
-	color: #666;
-	font-size:16px;
-	padding: 8px! important;
-	outline:0;
-	vertical-align: middle;
-}
-.auth-code img,  .auth-code a{
-	vertical-align: middle;
-}
-.auth-code img{
-	margin: 0px;
-	margin-left: 3px;
+	top:40px;
+	padding: 15px;
+	line-height: 1.4em;
+	font-family: "微软雅黑";
+	color: #444;
 
-	-moz-border-radius-topright: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-khtml-border-top-right-radius: 4px;
-	border-top-right-radius: 4px;
-
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	-khtml-border-bottom-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-
-	border-left: 1px solid #CCCCCC;
-	padding-left: 4px;
+	filter:alpha(opacity=92); /*IE滤镜，透明度50%*/
+	-moz-opacity:0.92; /*Firefox私有，透明度50%*/
+	opacity:0.92;/*其他，透明度50%*/
 }
-.auth-code a{
-	margin-left: 16px;
+.tabbarDialog_1{
+	background: white;
+	padding: 5px 10px;
+	line-height: 1.2em;
+	font-family: "微软雅黑";
+	font-size:14px;
+	color: #444;
 }
-
-/**
-样式设置页面
-**/
-#dw_phone,#dwPhone{
-  background: url("../images/iphone.png") no-repeat;
-  width: 404px;
-  height: 701px;
-  margin: 0px auto;
-  margin-top:40px;
-  position: relative;
+.p_DialogContent{
+	margin: 5px;
 }
-#dwPad{
-  background: url("../images/ipad.jpg") no-repeat;
-  background-size:cover;
-  width: 910px;
-  height: 630px;
-  margin: 0px auto;
-  margin-top:40px;
-  position: relative;
-}
-#dwPc{
-  /*background: url("../images/pc.jpeg") no-repeat;*/
-  background-size:cover;
-  width: 100%;
-  height: 630px;
-  margin: 0px auto;
-  margin-top:20px;
-  position: relative;
-}
-
-
-
-/** 重新定义单选与多选样式 **/
-.dwQuOptionItemContent{
-	cursor: pointer!important;
+.p_DialogContentTitle{
 	font-size: 16px;
-	color: rgb(134, 128, 128);
-	display: inline;
+	padding: 5px;
+	color: gray;
 }
-.dwQuOptionItemContent label{
-	cursor: pointer!important;
+.p_DialogContentRoot{
+	padding: 5px;
+	padding-left: 10px;
 }
-/*.dwQuOptionItemContent input{
-	display: none;
-}*/
-.dwQuOptionItemContent input[type='radio'],.dwQuOptionItemContent input[type='checkbox']{
-	display: none;
+.p_DialogContentItem{
+	padding: 3px;
 }
-.dwQuOptionItemContent .dwQuInputLabel{
-	padding: 0px! important;
+.tabbarDialogContent{
+	visibility: visible;
 }
-/**  单选样式***/
-.dwQuOptionItemContent .dwRedioStyle {
-  background: transparent url(../images/answer-icon-1.png) no-repeat center top;
-  vertical-align: middle;
-  height: 22px;
-  width: 22px;
-  background-position: -2px -6px;
-}
-.dwQuOptionItemContent .dwRedioStyle.checked{
-  background-position: -2px -31px;
-}
-/**多选样式**/
-.dwQuOptionItemContent .dwCheckboxStyle {
-  background: transparent url(../images/answer-icon-1.png) no-repeat center top;
-  vertical-align: middle;
-  height: 22px;
-  width: 22px;
-  background-position: -2px -60px;
-}
-.dwQuOptionItemContent .dwCheckboxStyle.checked{
-  background-position: -2px -87px;
-}
-.dwQuOptionItemContent .quCoOptionPadding{
-	padding-top:1px;
-}
-
-.footer-copyright{
-	margin-top:20px;
-	width: 100%;
-	height: 30px;
-	text-align: center;
+.selectRadioUl{
+	border: 1px solid #d6dce4;
+	margin-top: 6px!important;
 }

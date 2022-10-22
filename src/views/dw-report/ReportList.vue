@@ -30,15 +30,15 @@
             <el-table-column label="报告" >
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top">
-                  <p v-html="scope.row.surveyName" ></p>
+                  <p v-html="scope.row.reportName" ></p>
                   <div slot="reference" class="name-wrapper">
-                    <div v-if="scope.row.surveyNameText != null" v-text="scope.row.surveyNameText"></div>
-                    <div v-else v-html="scope.row.surveyName"></div>
+                    <div v-if="scope.row.reportNameText != null" v-text="scope.row.reportNameText"></div>
+                    <div v-else v-html="scope.row.reportName"></div>
                   </div>
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column label="答卷数" width="80" >
+            <el-table-column label="总报告数" width="80" >
               <template slot-scope="scope">
                 <span style="margin-left: 10px">{{ scope.row.answerNum!=null ? scope.row.answerNum:0 }}&nbsp;份</span>
               </template>
@@ -61,7 +61,7 @@
               <template slot-scope="scope">
                 <el-button-group>
                   <el-tooltip effect="dark" content="编辑报告" placement="top">
-                    <el-button size="mini" content="编辑报告" icon="el-icon-edit" @click="buttonClickA(`/static/diaowen/design.html?surveyId=${scope.row.id}`)" ></el-button>
+                    <el-button size="mini" content="编辑报告" icon="el-icon-edit" @click="buttonClickA(`/static/diaowen/report-answer-p.html?surveyId=${scope.row.surveyId}`)" ></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="答卷地址" placement="top">
                     <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.id}`)"></el-button>
@@ -128,7 +128,8 @@
 
 <script>
 
-import {dwSurveyCreate, dwSurveyList} from '@/api/dw-survey'
+import {dwSurveyList} from '@/api/dw-survey'
+import {reportCreate, reportList} from '@/api/dw-report'
 import {dwSurveyCopy, dwSurveyDelete} from '../../api/dw-survey'
 
 export default {
@@ -202,7 +203,7 @@ export default {
     },
     queryList (pageNo) {
       const {surveyName, surveyState} = this.formInline
-      dwSurveyList(this.pageSize, pageNo, surveyName, surveyState).then((response) => {
+      reportList(this.pageSize, pageNo, surveyName, surveyState).then((response) => {
         const resultData = response.data.data
         this.tableData = resultData
         this.total = response.data.total
@@ -218,13 +219,13 @@ export default {
       }
     },
     createSurvey () {
-      const data = {surveyName: this.form.name}
-      dwSurveyCreate(data).then((response) => {
+      const data = {reportName: this.form.name, surveyId: this.form.surveyId}
+      reportCreate(data).then((response) => {
         const httpResult = response.data
         const resultData = httpResult.data
         if (httpResult.resultCode === 200) {
           this.dialogFormVisible = false
-          this.$confirm('报告创建成功，点击“继续编辑报告”进入报告编辑。', '系统提示', {confirmButtonText: '继续编辑报告'}).then(({value}) => {
+          this.$confirm('报告创建成功，点击“继续编辑报告”进入报告内容编辑。', '系统提示', {confirmButtonText: '继续编辑报告'}).then(({value}) => {
             window.location.href=`/static/diaowen/design.html?surveyId=${resultData.id}`
           }).catch(() => {
             this.queryList(1)
