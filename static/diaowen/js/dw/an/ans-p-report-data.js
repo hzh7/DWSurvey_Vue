@@ -10,6 +10,7 @@ function querySurveyAll(callback) {
     url = ctxApp+"/design/survey-design/surveyAll.do";
   }
   var data = "surveyId="+surveyId+"&sid="+sid;
+  console.log(data)
   $.ajax({
     url:url,
     data:data,
@@ -319,6 +320,9 @@ function parseChoseReport(lastQuItemBody, item){
   hiddenChoseTag.prop("name","chose_qu_"+item.quType+"_"+item.id);
   var hiddenChoseTpye = lastQuItemBody.find(".hidden_chose_type");
   hiddenChoseTpye.prop("name","type_qu_"+item.quType+"_"+item.id);
+  if (item.quType === 'SCORE'){
+    hiddenChoseTpye.prop("checked", "checked");
+  }
   $(hiddenChoseTag).change(function (){
     for (let i=0; i<hiddenChoseTag.length; i++) {
       if (hiddenChoseTag[i].checked && hiddenChoseTag[i].value === 'n') {

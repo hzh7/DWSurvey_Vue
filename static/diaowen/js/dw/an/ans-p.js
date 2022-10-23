@@ -14,10 +14,12 @@ $(document).ready(function(){
   var ctx=$("#ctx").val();
   var sid = $.getUrlParam("sid");
   var surveyId = $.getUrlParam("surveyId");
+  var reportId = $.getUrlParam("reportId");
   var tag = $.getUrlParam("tag");
   var ruleCode =  $.getUrlParam("ruleCode");
   $("#sid").val(sid);
   $("#id").val(surveyId);
+  $("#reportId").val(reportId);
   $("#tag").val(tag);
   $("#ruleCode").val(ruleCode);
   if(tag!="" && (tag==="p" || tag==="s")){
@@ -157,7 +159,6 @@ function sww() {
   //   answerProgressbar($(this));
   //   validateCheck($(this).parents(".li_surveyQuItemBody"),false);
   // });
-
 
   //评分题V2
   var ScoreV2Dic = {1: '完全不符合', 2: '比较不符合', 3: '不确定&emsp;&emsp;', 4: '比较符合&emsp;', 5: '完全符合&emsp;'}; // 定义一个字典

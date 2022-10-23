@@ -43,7 +43,8 @@
   <input type="hidden" id="anClient" name="anClient" value="p">
   <input type="hidden" id="answerLoadTag" name="answerLoadTag" value="0">
   <input type="hidden" id="breakpoint1" name="breakpoint1" value="0">
-  <form id="reportForm" action="/api/dwsurvey/anon/response/save.do" method="post" >
+  <form id="reportForm" action="/api/dwsurvey/anon/response/saveReport.do" method="post" >
+    <input type="hidden" id="reportId" name="reportId" value="${report_id }">
     <input type="hidden" id="surveyId" name="surveyId" value="${survey.id }">
     <input type="hidden" id="ruleCode" name="ruleCode" value="">
     <input type="hidden" id="surveyLogId" name="surveyLogId" value="${survey.surveyLogId }">
@@ -436,7 +437,7 @@
     </div>
     <div class="hidden_chose_type_div" style="display: inline">
       <span style="margin-left: 20px">请配置题目类型:</span>
-      <input type="radio" class="hidden_chose_type" name="type_qu_${en.quType }_${en.id }" value="0"><label>维度题</label>
+      <input type="radio" class="hidden_chose_type" name="type_qu_${en.quType }_${en.id }" value="0" checked><label>维度题</label>
       <input type="radio" class="hidden_chose_type" name="type_qu_${en.quType }_${en.id }" value="1"><label>量表题</label>
     </div>
   </div>
