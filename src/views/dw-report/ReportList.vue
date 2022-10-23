@@ -70,7 +70,8 @@
                     <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/survey/d/chart/${scope.row.id}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="预览报告" placement="top">
-                    <el-button size="mini" icon="el-icon-view" @click="buttonClickA(`/static/diaowen/preview.html?surveyId=${scope.row.id}`)"></el-button>
+                    <!--                    <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/dw-survey/d/report/${scope.row.id}/0`)"></el-button>-->
+                    <el-button size="mini" icon="el-icon-view" @click="handlePreviewPdf(scope.row.id, 1)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="复制报告" placement="top">
                     <el-button size="mini" icon="el-icon-copy-document" @click="handleCopy(scope.$index, scope.row)"></el-button>
@@ -129,7 +130,7 @@
 <script>
 
 import {dwSurveyList} from '@/api/dw-survey'
-import {reportCreate, reportList} from '@/api/dw-report'
+import {reportCreate, reportList, reportItemState} from '@/api/dw-report'
 import {dwSurveyCopy, dwSurveyDelete} from '../../api/dw-survey'
 
 export default {
@@ -163,11 +164,25 @@ export default {
   },
   methods: {
     buttonClickA (href) {
-      console.log(this.tableData)
-      console.log(href)
       window.location.href = href
     },
+    handlePreviewPdf (reportId, itemId) {
+      reportItemState(reportId, itemId).then((response) => {
+        console.log(response)
+        const httpResult = response.data
+        if (httpResult.resultCode === 200 && httpResult.data === null) {
+          window.location.href = '/api/dwsurvey/app/report/readPdf'
+        } else {
+          this.$message.error(httpResult.data)
+        }
+      }).catch(() => {
+        console.log('error')
+      })
+    },
     handlePush: function (to) {
+      this.$router.push(to)
+    },
+    handleGo (to) {
       this.$router.push(to)
     },
     handleCopy (index, row) {

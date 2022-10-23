@@ -34,22 +34,23 @@ export function reportCreate (data) {
 }
 
 /**
- * 更新问卷状态
+ * 报告的生成状态
  * @param surveyId
  * @param surveyState
  * @returns {*}
  */
-export function dwSurveyUpState (surveyId, surveyState) {
+export function reportItemState (reportId, itemId) {
   const params = {
-    surveyId,
-    surveyState
+    reportId,
+    itemId
   }
   return request({
-    url: API.surveyUpState,
-    method: 'post',
+    url: API.reportItemState,
+    method: 'get',
     params
   })
 }
+
 /**
  * 复制问卷
  * @param data

@@ -111,7 +111,7 @@ export default new Router({
           component: DwSurveyAnswerInfo
         },
         {
-          path: '/no-top/dw-survey/d/report/:id/:answerId',
+          path: '/no-top/dw-survey/d/report/:reportId/:itemId', // 一份具体的报告
           name: 'DwSurveyReportPdf',
           component: DwSurveyReportPdf
         }
