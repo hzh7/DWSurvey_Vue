@@ -359,10 +359,10 @@ function parseScore(item,pageNo){
     var dwScoreOptionId= itemLast.find(".dwScoreOptionId");
     dwScoreOptionId.val(item_2.id);
     var scoreNumInput= itemLast.find(".scoreNumInput");
-    scoreNumInput.prop("name",dwScoreInputName+item_2.id);
+    scoreNumInput.prop("name",ScoreV2Dic[item_2.id]);
     if(item_2.isNote == 1) itemLast.find(".optionInpText").show();
     var quItemInputCase = itemLast.find(".quItemInputCase");
-    var scoreNumTableTr=quCoItemTable.find("tr.quScoreOptionTr:last .scoreNumTable tr");
+    var scoreNumTableTr=quCoItemTable.find("tr.quScoreOptionTr:last .scoreNumTableV2 tr");
     var paramInt02=item.paramInt02;
     scoreNumTableTr.empty();
     for(var i=1;i<=paramInt02;i++){
@@ -370,8 +370,7 @@ function parseScore(item,pageNo){
     }
   });
 }
-
-
+var ScoreV2Dic = {1: '完全不符合', 2: '比较不符合', 3: '不确定&emsp;&emsp;', 4: '比较符合&emsp;', 5: '完全符合&emsp;'}; // 定义一个字典
 function parseOrder(item,pageNo){
   var quModel = $("#orderQuModel").html();
   $("#dwSurveyQuContentAppUl").append(quModel);

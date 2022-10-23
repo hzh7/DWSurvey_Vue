@@ -1267,8 +1267,8 @@ li.addMoreOption .dwQuIcon,li.addMoreColumnOption .dwQuIcon,li.addMoreRowOption 
 	font-family: "微软雅黑";
 	font-size: 12px;
 }
-.quCoItemTableTd{
-	padding: 5px;
+.quCoItemTableTitle{
+	width: 50%;
 }
 .scoreNumTable {
 	border: 1px solid #DDE1E7;

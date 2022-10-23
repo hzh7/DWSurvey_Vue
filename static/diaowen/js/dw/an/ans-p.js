@@ -139,24 +139,46 @@ function sww() {
     return false;
   });
 
-  //评分题
+  // //评分题
+  // $(".scoreNumTable tr td").click(function(){
+  //   //scoreNumInput
+  //   var quScoreOptionTr=$(this).parents(".quScoreOptionTr");
+  //   var tdText=$(this).text();
+  //   quScoreOptionTr.find(".scoreNumTable tr td").css({"background":"white"});
+  //   quScoreOptionTr.find(".scoreNumText").html($(this).text()+"&nbsp;分");
+  //
+  //   $(this).prevAll().css({"background":""});
+  //   $(this).css({"background":""});
+  //
+  //   quScoreOptionTr.find(".scoreNumInput").val(tdText);
+  //   quScoreOptionTr.find(".scoreNumText").html(tdText+"&nbsp;分");
+  //
+  //   runlogic($(this));
+  //   answerProgressbar($(this));
+  //   validateCheck($(this).parents(".li_surveyQuItemBody"),false);
+  // });
+
+
+  //评分题V2
+  var ScoreV2Dic = {1: '完全不符合', 2: '比较不符合', 3: '不确定&emsp;&emsp;', 4: '比较符合&emsp;', 5: '完全符合&emsp;'}; // 定义一个字典
   $(".scoreNumTable tr td").click(function(){
     //scoreNumInput
     var quScoreOptionTr=$(this).parents(".quScoreOptionTr");
     var tdText=$(this).text();
     quScoreOptionTr.find(".scoreNumTable tr td").css({"background":"white"});
-    quScoreOptionTr.find(".scoreNumText").html($(this).text()+"&nbsp;分");
+    quScoreOptionTr.find(".scoreNumText").html(ScoreV2Dic[$(this).text()]);
 
     $(this).prevAll().css({"background":""});
     $(this).css({"background":""});
 
     quScoreOptionTr.find(".scoreNumInput").val(tdText);
-    quScoreOptionTr.find(".scoreNumText").html(tdText+"&nbsp;分");
+    quScoreOptionTr.find(".scoreNumText").html(ScoreV2Dic[$(this).text()]);
 
     runlogic($(this));
     answerProgressbar($(this));
     validateCheck($(this).parents(".li_surveyQuItemBody"),false);
   });
+
 
   bindScoreNumTdHover();
   function bindScoreNumTdHover(){
@@ -166,7 +188,7 @@ function sww() {
       if(scoreNumInput==""){
         $(this).prevAll().css({"background":""});
         $(this).css({"background":""});
-        quScoreOptionTr.find(".scoreNumText").html($(this).text()+"&nbsp;分");
+        quScoreOptionTr.find(".scoreNumText").html(ScoreV2Dic[$(this).text()]);
       }
     },function(){
       var quScoreOptionTr = $(this).parents(".quScoreOptionTr");
@@ -174,7 +196,7 @@ function sww() {
       if(scoreNumInput==""){
         $(this).prevAll().css({"background":"white"});
         $(this).css({"background":"white"});
-        quScoreOptionTr.find(".scoreNumText").html("分");
+        quScoreOptionTr.find(".scoreNumText").html("待选择&emsp;&emsp;");
       }
     });
   }

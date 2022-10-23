@@ -271,6 +271,13 @@ textarea{
 	background-position: -170px -74px;
 }
 
+#scoreQuModelV2 .dwToolbar_icon{
+	background-position: -170px -6px;
+}
+#scoreQuModelV2:hover .dwToolbar_icon,#scoreQuModelV2.hover .dwToolbar_icon{
+	background-position: -170px -74px;
+}
+
 #selectQuModel .dwToolbar_icon{
 	background-position: -908px -6px;
 }

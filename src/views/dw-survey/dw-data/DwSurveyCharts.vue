@@ -55,6 +55,9 @@ export default {
           } else if (questionData.quType === 'SCORE') {
             questionData.quTypeName = '评分题'
             quOptionsObj = questionData.quScores
+          } else if (questionData.quType === 'SCOREV2') {
+            questionData.quTypeName = '评分题V2'
+            quOptionsObj = questionData.quScoresV2
           } else if (questionData.quType === 'ORDERQU') {
             questionData.quTypeName = '排序题'
             quOptionsObj = questionData.quOrderbys
