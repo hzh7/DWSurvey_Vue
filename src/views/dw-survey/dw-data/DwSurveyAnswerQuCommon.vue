@@ -28,8 +28,8 @@
             </el-form-item>
           </div>
           <div v-if="question.quType === 'SCORE'">
-            <el-form-item v-for="(item,index) in question.quScores" :label="(index+1)+'、'+item.optionName" :key="item.id" >
-              <el-rate v-model="item.answer" disabled show-score text-color="#ff9900" score-template="{value}"></el-rate>
+            <el-form-item v-for="(item,index) in question.quScores" :label="(index+1)+'、'+fixOptionName(item.optionName)" :key="item.id" label-width="50%" >
+              <el-rate v-model="item.answer" :show-text="true" :texts="scoreText" disabled text-color="#ff9900"></el-rate>
             </el-form-item>
           </div>
           <div v-if="question.quType === 'ORDERQU'">
@@ -97,7 +97,8 @@ export default {
         label: '北京烤鸭'
       }],
       value: '',
-      dwResourceUrl: ''
+      dwResourceUrl: '',
+      scoreText: ['完全不符合', '比较不符合', '不确定', '比较符合', '完全符合'] // 定义一个字典
     }
   },
   mounted () {
@@ -114,6 +115,14 @@ export default {
     handleDelete (index, row) {
       console.log(index, row)
     },
+    fixOptionName (optionName) {
+      console.log(optionName)
+      const split = optionName.split('</span>')[0].split('>')
+      return split[split.length-1]
+    },
+    // fixOptionValue (value) {
+    //   return ScoreV2Dic[value]
+    // },
     handleCurrentChange: function (val) {
       this.queryList(val)
     }
