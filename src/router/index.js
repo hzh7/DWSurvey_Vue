@@ -19,6 +19,7 @@ import DwUserPwd from '@/views/dw-user/DwUserPwd'
 import AdminUserList from '@/views/dw-admin/AdminUserList'
 import Login from '@/views/Login'
 import ReportList from '@/views/dw-report/ReportList'
+import ReportItemList from '@/views/dw-report/ReportItemList'
 
 Vue.use(Router)
 
@@ -92,6 +93,11 @@ export default new Router({
           path: '/dw/report',
           name: 'ReportList',
           component: ReportList
+        },
+        {
+          path: '/dw/report/d/item/:id',
+          name: 'ReportItemList',
+          component: ReportItemList
         }
       ]
     },

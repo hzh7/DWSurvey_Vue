@@ -66,15 +66,12 @@
                   <el-tooltip effect="dark" content="答卷地址" placement="top">
                     <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.id}`)"></el-button>
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="答卷数据" placement="top">
-                    <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/survey/d/chart/${scope.row.id}`)"></el-button>
+                  <el-tooltip effect="dark" content="报告详细数据" placement="top">
+                    <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/report/d/item/${scope.row.id}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="预览报告" placement="top">
                     <!--                    <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/dw-survey/d/report/${scope.row.id}/0`)"></el-button>-->
                     <el-button size="mini" icon="el-icon-view" @click="handlePreviewPdf(scope.row.id, 1)"></el-button>
-                  </el-tooltip>
-                  <el-tooltip effect="dark" content="复制报告" placement="top">
-                    <el-button size="mini" icon="el-icon-copy-document" @click="handleCopy(scope.$index, scope.row)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="删除报告" placement="top">
                     <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)"></el-button>

@@ -21,6 +21,41 @@ export function reportList (pageSize, current, reportName) {
 }
 
 /**
+ * 指定reportId报告的详细报告
+ * @param pageSize
+ * @param current
+ * @param reportId
+ * @returns {*}
+ */
+export function reportItemList (pageSize, current, reportId) {
+  const params = {
+    pageSize,
+    current,
+    reportId
+  }
+  return request({
+    url: API.reportItemList,
+    method: 'get',
+    params
+  })
+}
+
+/**
+ * 指定reportId报告的详细报告
+ */
+export function reportItemGenerate (reportId, surveyAnswerId) {
+  const params = {
+    reportId,
+    surveyAnswerId
+  }
+  return request({
+    url: API.reportItemGenerate,
+    method: 'get',
+    params
+  })
+}
+
+/**
  * 创建报告
  * @param data
  * @returns {*}
