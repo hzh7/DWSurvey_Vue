@@ -26,5 +26,6 @@ export default {
   reportCreate: `/api/dwsurvey/app/report/add.do`,
   reportItemState: `/api/dwsurvey/app/reportItem/state.do`,
   reportItemList: `/api/dwsurvey/app/reportItem/list.do`,
-  reportItemGenerate: `/api/dwsurvey/app/reportItem/generate.do`
+  reportItemGenerate: `/api/dwsurvey/app/reportItem/generate.do`,
+  reportItemInit: `/api/dwsurvey/app/reportItem/init.do`
 }

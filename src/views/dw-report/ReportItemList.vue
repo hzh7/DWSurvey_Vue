@@ -2,6 +2,17 @@
   <div>
     <el-row>
       <el-col :span="20" :offset="2">
+        <div class="dw-table-form" style="padding-left: 60px;">
+          <el-form :inline="true" :model="formInline" class="dw-form-inline" size="medium" >
+            <el-form-item label="用户名">
+              <el-input v-model="formInline.userName" placeholder="请输入查询的用户" clearable></el-input>
+            </el-form-item>
+            <el-form-item style="margin-left: 40px;">
+              <el-button @click="onSubmit">重置</el-button>
+              <el-button type="primary" @click="onSubmit">查询</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
         <div class="dw-dcs-main">
           <div class="dw-dcs-main-title">
             <el-row type="flex">
@@ -73,7 +84,7 @@
 
 import DwSurveyDcsWrapper from '@/components/common/DwSurveyDcsWrapper'
 import {dwSurveyAnswerDelete} from '@/api/dw-survey'
-import {reportItemList, reportItemGenerate, reportItemState} from '@/api/dw-report'
+import {reportItemList, reportItemGenerate, reportItemState, reportItemInit} from '@/api/dw-report'
 import API from '@/api/index'
 
 export default {
@@ -83,18 +94,26 @@ export default {
   },
   data () {
     return {
+      reportId: this.$route.params.id,
       tableData: [],
       pageSize: 10,
       currentPage: 1,
       total: 0,
       dialogFormVisible: false,
-      expUpQu: 0
+      expUpQu: 0,
+      formInline: {
+        userName: null
+      }
     }
   },
   mounted () {
     this.queryList(1)
   },
   methods: {
+    onSubmit () {
+      console.log('submit!')
+      this.queryList(1)
+    },
     handleGo (to) {
       this.$router.push(to)
     },
@@ -152,7 +171,17 @@ export default {
       this.dialogFormVisible = true
     },
     handleInit () {
-      console.log()
+      reportItemInit(this.reportId).then((response) => {
+        const httpResult = response.data
+        if (httpResult.resultCode === 200) {
+          this.$message.success('报告初始化成功，即将刷新数据。')
+          this.queryList(1)
+        } else {
+          this.$message.error(httpResult.data)
+        }
+      }).catch(() => {
+        console.log('error')
+      })
     },
     executeExportData () {
       const downUrl = `${process.env.DW_API_URL}${API.surveyAnswerExport}?surveyId=${this.$route.params.id}&expUpQu=${this.expUpQu}`
@@ -160,7 +189,7 @@ export default {
       window.location.href = downUrl
     },
     queryList (pageNo) {
-      reportItemList(this.pageSize, pageNo, this.$route.params.id).then((response) => {
+      reportItemList(this.pageSize, pageNo, this.$route.params.id, this.formInline.userName).then((response) => {
         const resultData = response.data.data
         this.tableData = resultData
         this.total = response.data.total

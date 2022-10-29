@@ -339,6 +339,7 @@ function parseScore(item,pageNo){
     for(var i=1;i<=paramInt02;i++){
       scoreNumTableTr.append("<i class=\"fa fa-star-o\"></i>");
     }
+    scoreNumTableTr.append('<span class="scoreDescription" > 待选择</span>')
   });
 }
 

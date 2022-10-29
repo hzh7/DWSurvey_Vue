@@ -156,22 +156,30 @@ function sww(){
     }
 
 
+    var ScoreV2Dic = {1: '完全不符合', 2: '比较不符合', 3: '不确定&emsp;&emsp;', 4: '比较符合&emsp;', 5: '完全符合&emsp;'} // 定义一个字典
     /**评分题*/
     $(".starRating  .fa").hover(function(){
-      var prevAll=$(this).prevAll();
-      prevAll.removeClass("fa-star-o");
-      prevAll.addClass("fa-star");
-      $(this).removeClass("fa-star-o");
-      $(this).addClass("fa-star");
+      var scoreRow=$(this).parents('.scoreRow');
+      var starNum=scoreRow.find('.scoreNumInput').val();
+      if(starNum==='' || starNum<=0){
+        var prevAll=$(this).prevAll();
+        prevAll.removeClass("fa-star-o");
+        prevAll.addClass("fa-star");
+        $(this).removeClass("fa-star-o");
+        $(this).addClass("fa-star");
+        scoreRow.find(".scoreDescription").html(ScoreV2Dic[prevAll.size()+1])
+      }
     },function(){
       var scoreRow=$(this).parents(".scoreRow");
       var starNum=scoreRow.find(".scoreNumInput").val();
-      if(starNum==""&&starNum<=0){
+      if(starNum==="" || starNum<=0){
         var thParent=$(this).parent();
         var fas=thParent.find(".fa");
         fas.removeClass("fa-star");
         fas.addClass("fa-star-o");
+        scoreRow.find(".scoreDescription").html("待选择")
       }
+      console.log("starNum2:" + starNum)
     });
 
     $(".starRating  .fa").click(function(){
@@ -191,7 +199,10 @@ function sww(){
       if(prevAll[0]){
         starNum=prevAll.size();
       }
+      console.log("starNum:" + starNum)
       scoreRow.find(".scoreNumInput").val(starNum+1);
+      var ScoreV2Dic = {1: '完全不符合', 2: '比较不符合', 3: '不确定&emsp;&emsp;', 4: '比较符合&emsp;', 5: '完全符合&emsp;'} // 定义一个字典
+      scoreRow.find(".scoreDescription").html(ScoreV2Dic[starNum+1]);
 
       runlogic($(this));
 

@@ -40,7 +40,7 @@
             </el-table-column>
             <el-table-column label="总报告数" width="80" >
               <template slot-scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.answerNum!=null ? scope.row.answerNum:0 }}&nbsp;份</span>
+                <span style="margin-left: 10px">{{ scope.row.reportNum!=null ? scope.row.reportNum:0 }}&nbsp;份</span>
               </template>
             </el-table-column>
             <el-table-column label="状态" width="80" >
@@ -64,14 +64,13 @@
                     <el-button size="mini" content="编辑报告" icon="el-icon-edit" @click="buttonClickA(`/static/diaowen/report-answer-p.html?reportId=${scope.row.id}&surveyId=${scope.row.surveyId}`)" ></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="答卷地址" placement="top">
-                    <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.id}`)"></el-button>
+                    <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.surveyId}`)"></el-button>
+                  </el-tooltip>
+                  <el-tooltip effect="dark" content="初始化报告" placement="top">  <!--                    todo 修改图标-->
+                    <el-button size="mini" icon="el-icon-view" @click="handleInitReportItem(scope.row.id)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="报告详细数据" placement="top">
                     <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/report/d/item/${scope.row.id}`)"></el-button>
-                  </el-tooltip>
-                  <el-tooltip effect="dark" content="预览报告" placement="top">
-                    <!--                    <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/dw-survey/d/report/${scope.row.id}/0`)"></el-button>-->
-                    <el-button size="mini" icon="el-icon-view" @click="handlePreviewPdf(scope.row.id, 1)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="删除报告" placement="top">
                     <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)"></el-button>
@@ -127,7 +126,7 @@
 <script>
 
 import {dwSurveyList} from '@/api/dw-survey'
-import {reportCreate, reportList, reportItemState} from '@/api/dw-report'
+import {reportCreate, reportList, reportItemInit} from '@/api/dw-report'
 import {dwSurveyCopy, dwSurveyDelete} from '../../api/dw-survey'
 
 export default {
@@ -163,12 +162,12 @@ export default {
     buttonClickA (href) {
       window.location.href = href
     },
-    handlePreviewPdf (reportId, itemId) {
-      reportItemState(reportId, itemId).then((response) => {
-        console.log(response)
+    handleInitReportItem (reportId) {
+      reportItemInit(reportId).then((response) => {
         const httpResult = response.data
-        if (httpResult.resultCode === 200 && httpResult.data === null) {
-          window.location.href = '/api/dwsurvey/app/report/readPdf'
+        if (httpResult.resultCode === 200) {
+          this.$message.success('报告初始化成功，即将刷新数据。')
+          this.queryList(1)
         } else {
           this.$message.error(httpResult.data)
         }
@@ -176,6 +175,19 @@ export default {
         console.log('error')
       })
     },
+    // handlePreviewPdf (reportId, itemId) {
+    //   reportItemState(reportId, itemId).then((response) => {
+    //     console.log(response)
+    //     const httpResult = response.data
+    //     if (httpResult.resultCode === 200 && httpResult.data === null) {
+    //       window.location.href = '/api/dwsurvey/app/report/readPdf'
+    //     } else {
+    //       this.$message.error(httpResult.data)
+    //     }
+    //   }).catch(() => {
+    //     console.log('error')
+    //   })
+    // },
     handlePush: function (to) {
       this.$router.push(to)
     },

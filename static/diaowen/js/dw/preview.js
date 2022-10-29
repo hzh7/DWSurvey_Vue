@@ -55,7 +55,11 @@ function bindEvent(){
         if(httpResult.resultCode===200){
           window.location.href="/#/dw/survey/c/url/"+surveyId;
         }else{
-          alert(httpResult.resultMsg);
+          if (httpResult.data != null) {
+            alert(httpResult.resultMsg+": "+httpResult.data);
+          }else {
+            alert(httpResult.resultMsg);
+          }
         }
       },
       error: function(xmlHttpRequest, textStatus, errorThrown){
