@@ -3,11 +3,17 @@ $(document).ready(function(){
     var respType = $.getUrlParam("respType");
     var answerId = $.getUrlParam("answerId");
     var pwdCode = $.getUrlParam("pwdCode");
-    resultStatus2Msg(respType,sid,pwdCode);
+    var msg = decodeURIComponent($.getUrlParam("msg"));
+    console.log($.getUrlParam("msg"))
+    console.log($.getUrlParam("pwdCode"))
+    console.log($.getUrlParam("respType"))
+    console.log($.getUrlParam("answerId"))
+    console.log(msg)
+    resultStatus2Msg(respType,sid,pwdCode,msg);
     querySurveyData(respType,sid);
 });
 
-function resultStatus2Msg(resptype,sid,ruleCode) {
+function resultStatus2Msg(resptype,sid,ruleCode,msg) {
   var tempMsg = {};
   tempMsg.success = false;
   if(resptype==='1'){
@@ -70,6 +76,15 @@ function resultStatus2Msg(resptype,sid,ruleCode) {
   }else if(resptype==='202'){
     tempMsg.resultNote = '超过有效答卷次数!';
     tempMsg.resultColor = "#e70f0f";
+  }else if(resptype==='901'){
+    tempMsg.resultNote = msg;
+    tempMsg.resultColor = "#e70f0f";
+    $("#surveyName").html("发生错误");
+  }else if(resptype==='902'){
+    tempMsg.resultNote = '';
+    tempMsg.resultColor = "#e70f0f";
+    $("#surveyName").html("提交成功");
+    setReqUrl({reqUrl:'/#/dw/report', urlText:'点此跳转报告中心'})
   }
   tempMsg.respType = resptype;
   setResultMsg(tempMsg);

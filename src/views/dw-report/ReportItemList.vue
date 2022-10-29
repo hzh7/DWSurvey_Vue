@@ -47,18 +47,21 @@
                 <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="操作" width="160" >
+            <el-table-column label="操作" width="200" >
               <template slot-scope="scope">
                 <el-button-group>
                   <el-tooltip effect="dark" content="查看报告" placement="top">
                     <el-button size="mini" icon="el-icon-view" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)"></el-button>
                     <!--                    <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/report/${scope.row.surveyId}/${scope.row.id}`)"></el-button>-->
                   </el-tooltip>
+                  <el-tooltip effect="dark" content="查看关联问卷报告" placement="top">
+                    <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/data/${scope.row.surveyId}/${scope.row.surveyAnswerId}`)"></el-button>
+                  </el-tooltip>
                   <el-tooltip effect="dark" content="删除数据" placement="top">
                     <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="重新生成" placement="top">
-                    <el-button size="mini" icon="el-icon-document" @click="handleGenerate(scope.row.reportId, scope.row.surveyAnswerId)"></el-button>
+                    <el-button size="mini" icon="el-icon-refresh-left" @click="handleGenerate(scope.row.reportId, scope.row.surveyAnswerId)"></el-button>
                   </el-tooltip>
                 </el-button-group>
               </template>

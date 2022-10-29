@@ -67,7 +67,7 @@
                     <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.surveyId}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="初始化报告" placement="top">  <!--                    todo 修改图标-->
-                    <el-button size="mini" icon="el-icon-view" @click="handleInitReportItem(scope.row.id)"></el-button>
+                    <el-button size="mini" icon="el-icon-s-cooperation" @click="handleInitReportItem(scope.row.id)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="报告详细数据" placement="top">
                     <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/report/d/item/${scope.row.id}`)"></el-button>
@@ -252,7 +252,7 @@ export default {
         if (httpResult.resultCode === 200) {
           this.dialogFormVisible = false
           this.$confirm('报告创建成功，点击“继续编辑报告”进入报告内容编辑。', '系统提示', {confirmButtonText: '继续编辑报告'}).then(({value}) => {
-            window.location.href=`/static/diaowen/answer-p.html?reportId=${resultData.id}&surveyId=${resultData.surveyId}`
+            window.location.href=`/static/diaowen/report-answer-p.html?reportId=${resultData.id}&surveyId=${resultData.surveyId}`
           }).catch(() => {
             this.queryList(1)
           })
