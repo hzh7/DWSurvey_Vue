@@ -117,3 +117,35 @@ export function reportItemState (reportId, itemId) {
   })
 }
 
+/**
+ * 生成报告需要的最少样本量
+ * @returns {*}
+ * @param reportId
+ * @param minSampleSize
+ */
+export function reportMinSampleSize (reportId, minSampleSize) {
+  const params = {
+    reportId,
+    minSampleSize
+  }
+  return request({
+    url: API.reportMinSampleSize,
+    method: 'post',
+    params
+  })
+}
+
+/**
+ * 生成报告需要的最少样本量
+ * @returns {*}
+ * @param reportId
+ * @param minSampleSize
+ */
+export function reportDelete (data) {
+  return request({
+    url: API.reportDelete,
+    method: 'delete',
+    data
+  })
+}
+

@@ -57,10 +57,7 @@
                   <el-tooltip effect="dark" content="查看关联问卷报告" placement="top">
                     <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/data/${scope.row.surveyId}/${scope.row.surveyAnswerId}`)"></el-button>
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="删除数据" placement="top">
-                    <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)"></el-button>
-                  </el-tooltip>
-                  <el-tooltip effect="dark" content="重新生成" placement="top">
+                  <el-tooltip effect="dark" content="强制生成" placement="top">
                     <el-button size="mini" icon="el-icon-refresh-left" @click="handleGenerate(scope.row.reportId, scope.row.surveyAnswerId)"></el-button>
                   </el-tooltip>
                 </el-button-group>

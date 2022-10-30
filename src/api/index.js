@@ -25,6 +25,8 @@ export default {
   curUserPwdUpdate: `/api/dwsurvey/app/user/up-pwd.do`,
   reportList: `/api/dwsurvey/app/report/list.do`,
   reportCreate: `/api/dwsurvey/app/report/add.do`,
+  reportDelete: `/api/dwsurvey/app/report/delete.do`,
+  reportMinSampleSize: `/api/dwsurvey/app/report/minSampleSize.do`,
   reportItemState: `/api/dwsurvey/app/reportItem/state.do`,
   reportItemList: `/api/dwsurvey/app/reportItem/list.do`,
   myReportItemList: `/api/dwsurvey/app/reportItem/my-list.do`,

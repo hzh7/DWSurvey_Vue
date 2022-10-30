@@ -38,12 +38,17 @@
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column label="总报告数" width="80" >
+            <el-table-column label="最小有效样本量" width="120" align="center">
+              <template slot-scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.minSampleSize }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="总报告数" width="100" align="center">
               <template slot-scope="scope">
                 <span style="margin-left: 10px">{{ scope.row.reportNum!=null ? scope.row.reportNum:0 }}&nbsp;份</span>
               </template>
             </el-table-column>
-            <el-table-column label="状态" width="80" >
+            <el-table-column label="状态" width="100" align="center">
               <template slot-scope="scope">
                 <el-tag v-if="scope.row.surveyState === 0" >设计中</el-tag>
                 <el-tag v-else-if="scope.row.surveyState === 1" type="success" >收集中</el-tag>
@@ -72,8 +77,11 @@
                   <el-tooltip effect="dark" content="报告详细数据" placement="top">
                     <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/report/d/item/${scope.row.id}`)"></el-button>
                   </el-tooltip>
+                  <el-tooltip effect="dark" content="设置" placement="top">
+                    <el-button size="mini" icon="el-icon-setting" @click="dialogFormVisibleSetting = true; settingForm.reportId = scope.row.id; settingForm.minSampleSize = scope.row.minSampleSize"></el-button>
+                  </el-tooltip>
                   <el-tooltip effect="dark" content="删除报告" placement="top">
-                    <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)"></el-button>
+                    <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.row.id)"></el-button>
                   </el-tooltip>
                 </el-button-group>
               </template>
@@ -120,18 +128,36 @@
       </el-dialog>
     </div>
 
+    <div>
+      <el-dialog :visible.sync="dialogFormVisibleSetting" title="报告设置" append-to-body width="40%" >
+        <el-form label-position="top">
+          <el-form-item :label-width="formLabelWidth" label="报告生成最少样本量" >
+            <el-input
+              v-model="settingForm.minSampleSize"
+              onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+              autocomplete="off"
+              placeholder="请输入样本量"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisibleSetting = false">取 消</el-button>
+          <el-button type="primary" @click="handleDialogSettingConfirm">确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
+
   </div>
 </template>
 
 <script>
 
 import {dwSurveyList} from '@/api/dw-survey'
-import {reportCreate, reportList, reportItemInit} from '@/api/dw-report'
+import {reportCreate, reportList, reportItemInit, reportMinSampleSize, reportDelete} from '@/api/dw-report'
 import {dwSurveyCopy, dwSurveyDelete} from '../../api/dw-survey'
 
 export default {
   name: 'ReportList',
-  data () {
+  data: function () {
     return {
       tableData: [],
       pageSize: 10,
@@ -143,10 +169,15 @@ export default {
         surveyState: null
       },
       dialogFormVisible: false,
+      dialogFormVisibleSetting: false,
       form: {
         name: '',
         id: null,
         surveyId: ''
+      },
+      settingForm: {
+        minSampleSize: null,
+        reportId: null
       },
       formLabelWidth: '120px',
       surveyList: [{
@@ -205,10 +236,28 @@ export default {
       this.dialogFormVisible = true
       this.dialogTitle = '复制报告'
     },
-    handleDelete (index, row) {
+    formatNumber () {
+      this.formLabelWidth = this.formLabelWidth.toString().replace(/[^\d]/g, '')
+    },
+    handleSetting (index, row) {
       this.$msgbox.confirm('确认删除此报告吗？', '删除警告', {type: 'warning', confirmButtonText: '确认删除'}).then(() => {
         const data = {id: [row.id]}
         dwSurveyDelete(data).then((response) => {
+          console.log(response)
+          const httpResult = response.data
+          if (httpResult.resultCode === 200) {
+            this.$message.success('删除成功，即将刷新数据。')
+            this.queryList(1)
+          } else {
+            this.$message.error('删除报告失败')
+          }
+        })
+      }).catch(() => {})
+    },
+    handleDelete (reportId) {
+      this.$msgbox.confirm('确认删除此报告吗？', '删除警告', {type: 'warning', confirmButtonText: '确认删除'}).then(() => {
+        const data = {id: [reportId]}
+        reportDelete(data).then((response) => {
           console.log(response)
           const httpResult = response.data
           if (httpResult.resultCode === 200) {
@@ -243,6 +292,20 @@ export default {
       } else {
         this.copySurvey(this.form.id)
       }
+    },
+    handleDialogSettingConfirm () {
+      reportMinSampleSize(this.settingForm.reportId, this.settingForm.minSampleSize).then((response) => {
+        console.log(response)
+        const httpResult = response.data
+        if (httpResult.resultCode === 200) {
+          this.$message.success('修改成功')
+          this.settingForm.minSampleSize = null
+          this.dialogFormVisibleSetting = false
+          this.queryList(1)
+        }
+      }).catch(() => {
+        this.$message.error('修改失败')
+      })
     },
     createReport () {
       const data = {reportName: this.form.name, surveyId: this.form.surveyId}
