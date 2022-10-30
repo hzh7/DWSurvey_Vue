@@ -8,20 +8,23 @@
     class="dw-menu-height dw-menu"
     router
     @select="handleSelect">
-    <el-menu-item index="/dw/survey" >我的问卷</el-menu-item>
+    <el-menu-item index="/dw/my-survey" >我的问卷</el-menu-item>
+    <el-menu-item v-has-dw-role="'DWSURVEY_SUPER_ADMIN'" v-if="isAdmin" index="/dw/survey">问卷中心</el-menu-item>
+    <el-menu-item v-has-dw-role="'DWSURVEY_SUPER_ADMIN'" v-if="isAdmin" index="/dw/report" >报告中心</el-menu-item>
     <el-menu-item index="/dw/user" >个人中心</el-menu-item>
-    <el-menu-item v-has-dw-role="'DWSURVEY_SUPER_ADMIN'" index="/dw/admin/user" >用户管理</el-menu-item>
-    <el-menu-item index="/dw/report" >报告中心</el-menu-item>
-    <el-menu-item index="/dw/data" >数据中心</el-menu-item>
+    <el-menu-item v-has-dw-role="'DWSURVEY_SUPER_ADMIN'" v-if="isAdmin" index="/dw/admin/user" >用户管理</el-menu-item>
   </el-menu>
 </template>
 <script>
+
+import DwAuthorized from '../../utils/dw-authorized'
 
 export default {
   name: 'DwNavMenu',
   data () {
     return {
-      defActive: '/dw/survey'
+      defActive: '/dw/survey',
+      isAdmin: DwAuthorized.isAdmin()
     }
   },
   watch: {
@@ -41,12 +44,16 @@ export default {
     },
     setDefActive () {
       const fullPath = this.$route.fullPath
-      if (fullPath.indexOf('/dw/survey') >= 0) {
+      if (fullPath.indexOf('/dw/my-survey') >= 0) {
+        this.defActive = '/dw/my-survey'
+      } else if (fullPath.indexOf('/dw/survey') >= 0) {
         this.defActive = '/dw/survey'
       } else if (fullPath.indexOf('/dw/admin/user') >= 0) {
         this.defActive = '/dw/admin/user'
       } else if (fullPath.indexOf('/dw/user') >= 0) {
         this.defActive = '/dw/user'
+      } else if (fullPath.indexOf('/dw/report') >= 0) {
+        this.defActive = '/dw/report'
       }
     }
   }

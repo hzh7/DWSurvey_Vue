@@ -20,6 +20,7 @@ import AdminUserList from '@/views/dw-admin/AdminUserList'
 import Login from '@/views/Login'
 import ReportList from '@/views/dw-report/ReportList'
 import ReportItemList from '@/views/dw-report/ReportItemList'
+import DwMySurveyAnswer from '@/views/dw-survey/dw-data/DwMySurveyAnswer'
 
 Vue.use(Router)
 
@@ -32,7 +33,12 @@ export default new Router({
       children: [
         {
           path: '/',
-          redirect: '/dw/survey'
+          redirect: '/dw/my-survey'
+        },
+        {
+          path: '/dw/my-survey',
+          name: 'DwMySurveyAnswer',
+          component: DwMySurveyAnswer
         },
         {
           path: '/dw/survey',

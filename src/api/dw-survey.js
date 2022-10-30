@@ -168,3 +168,21 @@ export function dwSurveyAnswerInfo (answerId) {
   })
 }
 
+/**
+ * 获取问卷答卷详情
+ * @returns {*}
+ * @param pageSize
+ * @param current
+ */
+export function dwMySurveyAnswerList (pageSize, current) {
+  const params = {
+    pageSize,
+    current
+  }
+  return request({
+    url: API.mySurveyAnswerInfo,
+    method: 'get',
+    params
+  })
+}
+

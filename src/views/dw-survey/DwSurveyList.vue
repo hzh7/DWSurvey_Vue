@@ -25,7 +25,7 @@
             <el-row :span="24" type="flex" justify="space-between" align="middle">
               <el-col :span="4"><h3>我的问卷</h3></el-col>
               <el-col :span="20" style="text-align: right;">
-                <el-button type="primary" size="medium" @click="form.id=null;form.name=null;dialogTitle = '创建问卷';dialogFormVisible = true" >新建问卷</el-button>
+                <el-button v-if="isAdmin" type="primary" size="medium" @click="form.id=null;form.name=null;dialogTitle = '创建问卷';dialogFormVisible = true" >新建问卷</el-button>
               </el-col>
             </el-row>
           </div>
@@ -124,7 +124,8 @@
 <script>
 
 import {dwSurveyCreate, dwSurveyList} from '@/api/dw-survey'
-import {dwSurveyCopy, dwSurveyDelete} from '../../api/dw-survey'
+import {dwSurveyCopy, dwSurveyDelete} from '@/api/dw-survey'
+import DwAuthorized from '@/utils/dw-authorized'
 
 export default {
   name: 'SurveyList',
@@ -144,7 +145,8 @@ export default {
         name: '',
         id: null
       },
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      isAdmin: DwAuthorized.isAdmin()
     }
   },
   mounted () {

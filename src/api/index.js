@@ -12,6 +12,7 @@ export default {
   surveyDelete: `/api/dwsurvey/app/survey/delete.do`,
   surveyReport: `/api/dwsurvey/app/stats/report.do`,
   surveyAnswerList: `/api/dwsurvey/app/answer/list.do`,
+  mySurveyAnswerInfo: `/api/dwsurvey/app/answer/my-list.do`,
   surveyAnswerInfo: `/api/dwsurvey/app/answer/info.do`,
   surveyAnswerExport: `/api/dwsurvey/app/answer/export-xls.do`,
   surveyAnswerDelete: `/api/dwsurvey/app/answer/delete.do`,
@@ -26,6 +27,7 @@ export default {
   reportCreate: `/api/dwsurvey/app/report/add.do`,
   reportItemState: `/api/dwsurvey/app/reportItem/state.do`,
   reportItemList: `/api/dwsurvey/app/reportItem/list.do`,
+  myReportItemList: `/api/dwsurvey/app/reportItem/my-list.do`,
   reportItemGenerate: `/api/dwsurvey/app/reportItem/generate.do`,
   reportItemInit: `/api/dwsurvey/app/reportItem/init.do`
 }

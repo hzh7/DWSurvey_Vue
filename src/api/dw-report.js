@@ -41,6 +41,21 @@ export function reportItemList (pageSize, current, reportId, userName) {
     params
   })
 }
+/**
+ * 指定reportId报告的详细报告
+ * @returns {*}
+ * @param surveyId
+ */
+export function myReportItemList (surveyAnswerId) {
+  const params = {
+    surveyAnswerId
+  }
+  return request({
+    url: API.myReportItemList,
+    method: 'get',
+    params
+  })
+}
 
 /**
  * 指定reportId报告的详细报告

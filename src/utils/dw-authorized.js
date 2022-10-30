@@ -29,6 +29,13 @@ export default {
       }
     }
     return authority
+  },
+  isAdmin () {
+    const authority = this.getAuthority()
+    if (authority == null) {
+      return false
+    }
+    return authority.includes('DWSURVEY_SUPER_ADMIN')
   }
 }
 
