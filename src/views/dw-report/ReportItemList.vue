@@ -36,9 +36,13 @@
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column label="报告状态" >
+            <el-table-column label="报告状态" width="100" align="center">
               <template slot-scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.generateStatus }}</span>
+                <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
+                <el-tag v-else-if="scope.row.generateStatus === 1" type="success" >生成中</el-tag>
+                <el-tag v-else-if="scope.row.generateStatus === 2" type="info" >生成成功</el-tag>
+                <el-tag v-else-if="scope.row.generateStatus === 3" type="danger" >生成失败</el-tag>
+                <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
               </template>
             </el-table-column>
             <el-table-column label="报告生成时间" >
@@ -52,12 +56,11 @@
                 <el-button-group>
                   <el-tooltip effect="dark" content="查看报告" placement="top">
                     <el-button size="mini" icon="el-icon-view" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)"></el-button>
-                    <!--                    <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/report/${scope.row.surveyId}/${scope.row.id}`)"></el-button>-->
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="查看关联问卷报告" placement="top">
+                  <el-tooltip effect="dark" content="查看关联问卷" placement="top">
                     <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/data/${scope.row.surveyId}/${scope.row.surveyAnswerId}`)"></el-button>
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="强制生成" placement="top">
+                  <el-tooltip effect="dark" content="强制生成报告" placement="top">
                     <el-button size="mini" icon="el-icon-refresh-left" @click="handleGenerate(scope.row.reportId, scope.row.surveyAnswerId)"></el-button>
                   </el-tooltip>
                 </el-button-group>
@@ -139,8 +142,19 @@ export default {
     handleGenerate (reportId, surveyAnswerId) {
       console.log(reportId, surveyAnswerId)
       this.$msgbox.confirm('确认重新生成此报告吗？', '重新生成', {type: 'warning', confirmButtonText: '确认'}).then(() => {
+        // 设置整页加载
+        const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        })
+        setTimeout(() => {
+          loading.close()
+        }, 5000)
         reportItemGenerate(reportId, surveyAnswerId).then((response) => {
           console.log(response)
+          loading.close()
           const httpResult = response.data
           if (httpResult.resultCode === 200) {
             this.$message.success('生成成功，即将刷新数据。')
@@ -155,7 +169,7 @@ export default {
       reportItemState(reportId, reportItemId).then((response) => {
         console.log(response)
         const httpResult = response.data
-        if (httpResult.resultCode === 200 && httpResult.data === '生成完毕') {
+        if (httpResult.resultCode === 200 && httpResult.data === 2) {
           window.location.href = '/api/dwsurvey/app/report/readPdf?reportItemId='+reportItemId
         } else {
           this.$message.error(httpResult.data)

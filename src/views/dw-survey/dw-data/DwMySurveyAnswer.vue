@@ -67,13 +67,21 @@
               stripe
               style="width: 100%">
               <el-table-column property="reportName" label="报告名称" width="150"></el-table-column>
-              <el-table-column property="generateStatus" label="状态" width="100"></el-table-column>
+              <el-table-column label="报告状态" width="100" align="center">
+                <template slot-scope="scope">
+                  <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
+                  <el-tag v-else-if="scope.row.generateStatus === 1" type="success" >生成中</el-tag>
+                  <el-tag v-else-if="scope.row.generateStatus === 2" type="info" >生成成功</el-tag>
+                  <el-tag v-else-if="scope.row.generateStatus === 3" type="danger" >生成失败</el-tag>
+                  <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
+                </template>
+              </el-table-column>
               <el-table-column property="createDate" label="生成时间"></el-table-column>
               <el-table-column label="操作" width="160" >
                 <template slot-scope="scope">
                   <el-button-group>
                     <el-tooltip effect="dark" content="点击跳转" placement="top">
-                      <el-button :disabled="scope.row.generateStatus!=='生成完毕'" size="mini" icon="el-icon-document" @click="handleDialogReport(scope.row.id)" ></el-button>
+                      <el-button :disabled="scope.row.generateStatus!==2" size="mini" icon="el-icon-document" @click="handleDialogReport(scope.row.id)" ></el-button>
                     </el-tooltip>
                   </el-button-group>
                 </template>

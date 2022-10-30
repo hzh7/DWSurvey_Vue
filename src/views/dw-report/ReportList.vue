@@ -50,9 +50,10 @@
             </el-table-column>
             <el-table-column label="状态" width="100" align="center">
               <template slot-scope="scope">
-                <el-tag v-if="scope.row.surveyState === 0" >设计中</el-tag>
-                <el-tag v-else-if="scope.row.surveyState === 1" type="success" >收集中</el-tag>
-                <el-tag v-else-if="scope.row.surveyState === 2" type="info" >收集结束</el-tag>
+                <el-tag v-if="scope.row.reportState === 0" >编辑中</el-tag>
+                <el-tag v-else-if="scope.row.reportState === 1" type="success" >激活中</el-tag>
+                <el-tag v-else-if="scope.row.reportState === 2" type="info" >生效中</el-tag>
+                <el-tag v-else-if="scope.row.reportState === 3" type="danger" >不可用</el-tag>
                 <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
               </template>
             </el-table-column>
@@ -138,6 +139,13 @@
               autocomplete="off"
               placeholder="请输入样本量"></el-input>
           </el-form-item>
+          <el-form-item :label-width="formLabelWidth" label="报告状态变更" prop="status" class="dw-dialog-form-item">
+            <el-radio-group v-model="settingForm.reportStatue">
+              <el-radio :label="0">配置中</el-radio>
+              <el-radio :label="1">激活</el-radio>
+              <el-radio :label="2">不可用</el-radio>
+            </el-radio-group>
+          </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisibleSetting = false">取 消</el-button>
@@ -177,7 +185,8 @@ export default {
       },
       settingForm: {
         minSampleSize: null,
-        reportId: null
+        reportId: null,
+        reportStatue: 0
       },
       formLabelWidth: '120px',
       surveyList: [{
