@@ -63,10 +63,10 @@
             <el-table-column label="操作" width="160" align="center">
               <template slot-scope="scope">
                 <el-button-group>
-                  <el-tooltip effect="dark" content="编辑问卷" placement="top">
+                  <el-tooltip effect="dark" content="编辑用户" placement="top">
                     <el-button size="mini" content="编辑" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)"></el-button>
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="删除问卷" placement="top">
+                  <el-tooltip effect="dark" content="删除用户" placement="top">
                     <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)" ></el-button>
                   </el-tooltip>
                 </el-button-group>

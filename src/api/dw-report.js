@@ -75,9 +75,10 @@ export function reportItemGenerate (reportId, surveyAnswerId) {
 /**
  * 初始化报告的所有报告项
  */
-export function reportItemInit (reportId) {
+export function reportItemInit (reportId, rebuild) {
   const params = {
-    reportId
+    reportId,
+    rebuild
   }
   return request({
     url: API.reportItemInit,

@@ -66,8 +66,8 @@
               :data="reportItemData"
               stripe
               style="width: 100%">
-              <el-table-column property="reportName" label="报告名称" width="150"></el-table-column>
-              <el-table-column label="报告状态" width="100" align="center">
+              <el-table-column property="reportName" label="报告名称" width="180"></el-table-column>
+              <el-table-column label="报告状态" width="150" align="center">
                 <template slot-scope="scope">
                   <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
                   <el-tag v-else-if="scope.row.generateStatus === 1" type="info" >生成中</el-tag>
