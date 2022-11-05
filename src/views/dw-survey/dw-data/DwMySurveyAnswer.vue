@@ -4,12 +4,12 @@
       <el-col :span="20" :offset="2">
         <div class="dw-table-form" style="padding-left: 60px;">
           <el-form :inline="true" :model="formInline" class="dw-form-inline" size="medium" >
-            <el-form-item label="问卷名称">
-              <el-input placeholder="请输入查询的问卷" clearable></el-input>
+            <el-form-item label="问卷">
+              <el-input v-model="formInline.surveyName" placeholder="请输入查询的问卷" clearable></el-input>
             </el-form-item>
             <el-form-item style="margin-left: 40px;">
-              <el-button @click="onSubmit">重置</el-button>
-              <el-button type="primary" @click="onSubmit">查询</el-button>
+              <el-button @click="onSubmit(true)">重置</el-button>
+              <el-button type="primary" @click="onSubmit(false)">查询</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -70,8 +70,8 @@
               <el-table-column label="报告状态" width="100" align="center">
                 <template slot-scope="scope">
                   <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
-                  <el-tag v-else-if="scope.row.generateStatus === 1" type="success" >生成中</el-tag>
-                  <el-tag v-else-if="scope.row.generateStatus === 2" type="info" >生成成功</el-tag>
+                  <el-tag v-else-if="scope.row.generateStatus === 1" type="info" >生成中</el-tag>
+                  <el-tag v-else-if="scope.row.generateStatus === 2" type="success" >生成成功</el-tag>
                   <el-tag v-else-if="scope.row.generateStatus === 3" type="danger" >生成失败</el-tag>
                   <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
                 </template>
@@ -81,7 +81,7 @@
                 <template slot-scope="scope">
                   <el-button-group>
                     <el-tooltip effect="dark" content="点击跳转" placement="top">
-                      <el-button :disabled="scope.row.generateStatus!==2" size="mini" icon="el-icon-document" @click="handleDialogReport(scope.row.id)" ></el-button>
+                      <el-button :disabled="scope.row.generateStatus!==2" size="mini" icon="el-icon-document" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)" ></el-button>
                     </el-tooltip>
                   </el-button-group>
                 </template>
@@ -98,7 +98,7 @@
 
 import DwSurveyDcsWrapper from '@/components/common/DwSurveyDcsWrapper'
 import {dwMySurveyAnswerList} from '@/api/dw-survey'
-import {myReportItemList} from '@/api/dw-report'
+import {myReportItemList, reportItemState} from '@/api/dw-report'
 
 export default {
   name: 'DwMySurveyAnswer',
@@ -113,7 +113,10 @@ export default {
       total: 0,
       expUpQu: 0,
       dialogTableVisible: false,
-      reportItemData: []
+      reportItemData: [],
+      formInline: {
+        surveyName: null
+      }
     }
   },
   mounted () {
@@ -129,8 +132,18 @@ export default {
     handleCurrentChange (val) {
       this.queryList(val)
     },
-    handleDialogReport (val) {
-      console.log(val)
+    handlePreviewPdf (reportId, reportItemId) {
+      reportItemState(reportId, reportItemId).then((response) => {
+        console.log(response)
+        const httpResult = response.data
+        if (httpResult.resultCode === 200 && httpResult.data === 2) {
+          window.location.href = '/api/dwsurvey/app/report/readPdf?reportItemId='+reportItemId
+        } else {
+          this.$message.error(httpResult.data)
+        }
+      }).catch(() => {
+        console.log('error')
+      })
     },
     handleDialogTable (surveyAnswerId) {
       myReportItemList(surveyAnswerId).then((response) => {
@@ -140,12 +153,18 @@ export default {
       this.dialogTableVisible = true
     },
     queryList (pageNo) {
-      dwMySurveyAnswerList(this.pageSize, pageNo).then((response) => {
+      dwMySurveyAnswerList(this.pageSize, pageNo, this.formInline.surveyName).then((response) => {
         this.tableData = response.data.data
         this.total = response.data.total
         this.currentPage = response.data.current
         this.pageSize = response.data.pageSize
       })
+    },
+    onSubmit (reset) {
+      if (reset) {
+        this.formInline.surveyName = null
+      }
+      this.queryList(1)
     }
   }
 }

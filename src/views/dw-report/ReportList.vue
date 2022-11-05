@@ -50,9 +50,9 @@
             </el-table-column>
             <el-table-column label="状态" width="100" align="center">
               <template slot-scope="scope">
-                <el-tag v-if="scope.row.reportState === 0" >编辑中</el-tag>
-                <el-tag v-else-if="scope.row.reportState === 1" type="success" >激活中</el-tag>
-                <el-tag v-else-if="scope.row.reportState === 2" type="info" >生效中</el-tag>
+                <el-tag v-if="scope.row.reportState === 0" >配置中</el-tag>
+                <el-tag v-else-if="scope.row.reportState === 1" type="info" >激活中</el-tag>
+                <el-tag v-else-if="scope.row.reportState === 2" type="success" >生效中</el-tag>
                 <el-tag v-else-if="scope.row.reportState === 3" type="danger" >不可用</el-tag>
                 <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
               </template>
@@ -69,7 +69,7 @@
                   <el-tooltip effect="dark" content="编辑报告" placement="top">
                     <el-button size="mini" content="编辑报告" icon="el-icon-edit" @click="buttonClickA(`/static/diaowen/report-answer-p.html?reportId=${scope.row.id}&surveyId=${scope.row.surveyId}`)" ></el-button>
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="答卷地址" placement="top">
+                  <el-tooltip effect="dark" content="关联答卷" placement="top">
                     <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.surveyId}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="初始化报告" placement="top">  <!--                    todo 修改图标-->
@@ -79,7 +79,7 @@
                     <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/report/d/item/${scope.row.id}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="设置" placement="top">
-                    <el-button size="mini" icon="el-icon-setting" @click="dialogFormVisibleSetting = true; settingForm.reportId = scope.row.id; settingForm.minSampleSize = scope.row.minSampleSize"></el-button>
+                    <el-button size="mini" icon="el-icon-setting" @click="handleSetting(scope.row.id, scope.row.minSampleSize, scope.row.reportState)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="删除报告" placement="top">
                     <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.row.id)"></el-button>
@@ -132,18 +132,19 @@
     <div>
       <el-dialog :visible.sync="dialogFormVisibleSetting" title="报告设置" append-to-body width="40%" >
         <el-form label-position="top">
-          <el-form-item :label-width="formLabelWidth" label="报告生成最少样本量" >
+          <el-form-item :label-width="formLabelWidth" label="报告生成最少样本量：" >
             <el-input
               v-model="settingForm.minSampleSize"
               onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
               autocomplete="off"
               placeholder="请输入样本量"></el-input>
           </el-form-item>
-          <el-form-item :label-width="formLabelWidth" label="报告状态变更" prop="status" class="dw-dialog-form-item">
-            <el-radio-group v-model="settingForm.reportStatue">
+          <el-form-item :label-width="formLabelWidth" label="报告状态变更：" prop="status" class="dw-dialog-form-item">
+            <el-radio-group v-model="settingForm.reportState">
               <el-radio :label="0">配置中</el-radio>
               <el-radio :label="1">激活</el-radio>
-              <el-radio :label="2">不可用</el-radio>
+              <el-radio :label="2">生效</el-radio>
+              <el-radio :label="3">不可用</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -160,8 +161,8 @@
 <script>
 
 import {dwSurveyList} from '@/api/dw-survey'
-import {reportCreate, reportList, reportItemInit, reportMinSampleSize, reportDelete} from '@/api/dw-report'
-import {dwSurveyCopy, dwSurveyDelete} from '../../api/dw-survey'
+import {reportCreate, reportList, reportItemInit, reportMinSampleSizeAndStatue, reportDelete} from '@/api/dw-report'
+import {dwSurveyCopy} from '../../api/dw-survey'
 
 export default {
   name: 'ReportList',
@@ -186,7 +187,7 @@ export default {
       settingForm: {
         minSampleSize: null,
         reportId: null,
-        reportStatue: 0
+        reportState: 0
       },
       formLabelWidth: '120px',
       surveyList: [{
@@ -248,20 +249,11 @@ export default {
     formatNumber () {
       this.formLabelWidth = this.formLabelWidth.toString().replace(/[^\d]/g, '')
     },
-    handleSetting (index, row) {
-      this.$msgbox.confirm('确认删除此报告吗？', '删除警告', {type: 'warning', confirmButtonText: '确认删除'}).then(() => {
-        const data = {id: [row.id]}
-        dwSurveyDelete(data).then((response) => {
-          console.log(response)
-          const httpResult = response.data
-          if (httpResult.resultCode === 200) {
-            this.$message.success('删除成功，即将刷新数据。')
-            this.queryList(1)
-          } else {
-            this.$message.error('删除报告失败')
-          }
-        })
-      }).catch(() => {})
+    handleSetting (reportId, minSampleSize, reportState) {
+      this.settingForm.reportId = reportId
+      this.settingForm.minSampleSize =minSampleSize
+      this.settingForm.reportState =reportState
+      this.dialogFormVisibleSetting = true
     },
     handleDelete (reportId) {
       this.$msgbox.confirm('确认删除此报告吗？', '删除警告', {type: 'warning', confirmButtonText: '确认删除'}).then(() => {
@@ -303,7 +295,7 @@ export default {
       }
     },
     handleDialogSettingConfirm () {
-      reportMinSampleSize(this.settingForm.reportId, this.settingForm.minSampleSize).then((response) => {
+      reportMinSampleSizeAndStatue(this.settingForm.reportId, this.settingForm.minSampleSize, this.settingForm.reportState).then((response) => {
         console.log(response)
         const httpResult = response.data
         if (httpResult.resultCode === 200) {

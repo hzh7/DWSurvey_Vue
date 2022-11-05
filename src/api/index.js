@@ -26,10 +26,11 @@ export default {
   reportList: `/api/dwsurvey/app/report/list.do`,
   reportCreate: `/api/dwsurvey/app/report/add.do`,
   reportDelete: `/api/dwsurvey/app/report/delete.do`,
-  reportMinSampleSize: `/api/dwsurvey/app/report/minSampleSize.do`,
+  reportMinSampleSizeAndStatue: `/api/dwsurvey/app/report/minSampleSizeAndStatue.do`,
   reportItemState: `/api/dwsurvey/app/reportItem/state.do`,
   reportItemList: `/api/dwsurvey/app/reportItem/list.do`,
   myReportItemList: `/api/dwsurvey/app/reportItem/my-list.do`,
   reportItemGenerate: `/api/dwsurvey/app/reportItem/generate.do`,
-  reportItemInit: `/api/dwsurvey/app/reportItem/init.do`
+  reportItemInit: `/api/dwsurvey/app/reportItem/init.do`,
+  reportItemDelete: `/api/dwsurvey/app/reportItem/delete.do`
 }

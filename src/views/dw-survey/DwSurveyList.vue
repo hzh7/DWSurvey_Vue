@@ -15,8 +15,8 @@
               </el-select>
             </el-form-item>
             <el-form-item style="margin-left: 40px;">
-              <el-button @click="onSubmit">重置</el-button>
-              <el-button type="primary" @click="onSubmit">查询</el-button>
+              <el-button @click="onSubmit(true)">重置</el-button>
+              <el-button type="primary" @click="onSubmit(false)">查询</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -185,7 +185,11 @@ export default {
         })
       }).catch(() => {})
     },
-    onSubmit () {
+    onSubmit (reset) {
+      if (reset) {
+        this.formInline.surveyName = null
+        this.formInline.surveyState = null
+      }
       console.log('submit!')
       this.queryList(1)
     },

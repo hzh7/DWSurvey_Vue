@@ -36,19 +36,25 @@
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column label="报告状态" width="100" align="center">
+            <el-table-column label="报告创建时间" >
               <template slot-scope="scope">
-                <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
-                <el-tag v-else-if="scope.row.generateStatus === 1" type="success" >生成中</el-tag>
-                <el-tag v-else-if="scope.row.generateStatus === 2" type="info" >生成成功</el-tag>
-                <el-tag v-else-if="scope.row.generateStatus === 3" type="danger" >生成失败</el-tag>
-                <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
+                <i class="el-icon-time"></i>
+                <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
               </template>
             </el-table-column>
             <el-table-column label="报告生成时间" >
               <template slot-scope="scope">
                 <i class="el-icon-time"></i>
-                <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
+                <span style="margin-left: 10px">{{ scope.row.generateDate }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="报告状态" width="100" align="center">
+              <template slot-scope="scope">
+                <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
+                <el-tag v-else-if="scope.row.generateStatus === 1" type="info" >生成中</el-tag>
+                <el-tag v-else-if="scope.row.generateStatus === 2" type="success" >生成成功</el-tag>
+                <el-tag v-else-if="scope.row.generateStatus === 3" type="danger" >生成失败</el-tag>
+                <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
               </template>
             </el-table-column>
             <el-table-column label="操作" width="200" >
@@ -57,11 +63,14 @@
                   <el-tooltip effect="dark" content="查看报告" placement="top">
                     <el-button size="mini" icon="el-icon-view" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)"></el-button>
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="查看关联问卷" placement="top">
+                  <el-tooltip effect="dark" content="查看关联答卷" placement="top">
                     <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/data/${scope.row.surveyId}/${scope.row.surveyAnswerId}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="强制生成报告" placement="top">
                     <el-button size="mini" icon="el-icon-refresh-left" @click="handleGenerate(scope.row.reportId, scope.row.surveyAnswerId)"></el-button>
+                  </el-tooltip>
+                  <el-tooltip effect="dark" content="删除报告" placement="top">
+                    <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.row.id)"></el-button>
                   </el-tooltip>
                 </el-button-group>
               </template>
@@ -86,8 +95,7 @@
 <script>
 
 import DwSurveyDcsWrapper from '@/components/common/DwSurveyDcsWrapper'
-import {dwSurveyAnswerDelete} from '@/api/dw-survey'
-import {reportItemList, reportItemGenerate, reportItemState, reportItemInit} from '@/api/dw-report'
+import {reportItemList, reportItemGenerate, reportItemState, reportItemInit, reportItemDelete} from '@/api/dw-report'
 import API from '@/api/index'
 
 export default {
@@ -123,11 +131,10 @@ export default {
     handlePush: function (to) {
       this.$router.push(to)
     },
-    handleDelete (index, row) {
-      console.log(index, row)
+    handleDelete (reportItemId) {
       this.$msgbox.confirm('确认删除此条答卷吗？', '删除警告', {type: 'warning', confirmButtonText: '确认删除'}).then(() => {
-        const data = {id: [row.id]}
-        dwSurveyAnswerDelete(data).then((response) => {
+        const data = {id: [reportItemId]}
+        reportItemDelete(data).then((response) => {
           console.log(response)
           const httpResult = response.data
           if (httpResult.resultCode === 200) {
@@ -156,7 +163,7 @@ export default {
           console.log(response)
           loading.close()
           const httpResult = response.data
-          if (httpResult.resultCode === 200) {
+          if (httpResult.resultCode === 200 && httpResult.data === null) {
             this.$message.success('生成成功，即将刷新数据。')
             this.queryList(1)
           } else {

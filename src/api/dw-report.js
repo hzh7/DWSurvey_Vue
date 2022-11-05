@@ -122,28 +122,38 @@ export function reportItemState (reportId, itemId) {
  * @returns {*}
  * @param reportId
  * @param minSampleSize
+ * @param reportStatue
  */
-export function reportMinSampleSize (reportId, minSampleSize) {
+export function reportMinSampleSizeAndStatue (reportId, minSampleSize, reportStatue) {
   const params = {
     reportId,
-    minSampleSize
+    minSampleSize,
+    reportStatue
   }
   return request({
-    url: API.reportMinSampleSize,
+    url: API.reportMinSampleSizeAndStatue,
     method: 'post',
     params
   })
 }
 
 /**
- * 生成报告需要的最少样本量
- * @returns {*}
- * @param reportId
- * @param minSampleSize
+ * 删除配置的报告
  */
 export function reportDelete (data) {
   return request({
     url: API.reportDelete,
+    method: 'delete',
+    data
+  })
+}
+
+/**
+ * 删除一份生成的报告项
+ */
+export function reportItemDelete (data) {
+  return request({
+    url: API.reportItemDelete,
     method: 'delete',
     data
   })

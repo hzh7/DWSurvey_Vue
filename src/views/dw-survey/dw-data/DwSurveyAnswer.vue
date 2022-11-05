@@ -5,7 +5,6 @@
         <div class="dw-dcs-main-title">
           <el-row type="flex">
             <el-col :span="18"><div style="font-size: 14px;padding: 10px;"><strong>原始数据列表</strong></div></el-col>
-            <el-col :span="6" style="text-align: right;padding-right: 2px;" ><el-button type="primary" size="small" @click="handleTest({survey})" >测试按钮</el-button></el-col>
             <el-col :span="6" style="text-align: right;padding-right: 2px;" ><el-button type="primary" size="small" @click="handleExport" >导出数据</el-button></el-col>
           </el-row>
         </div>
@@ -43,9 +42,6 @@
                 </el-tooltip>
                 <el-tooltip effect="dark" content="删除数据" placement="top">
                   <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)"></el-button>
-                </el-tooltip>
-                <el-tooltip effect="dark" content="查看报告" placement="top">
-                  <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/report/${scope.row.surveyId}/${scope.row.id}`)"></el-button>
                 </el-tooltip>
               </el-button-group>
             </template>

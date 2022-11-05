@@ -173,11 +173,13 @@ export function dwSurveyAnswerInfo (answerId) {
  * @returns {*}
  * @param pageSize
  * @param current
+ * @param surveyName
  */
-export function dwMySurveyAnswerList (pageSize, current) {
+export function dwMySurveyAnswerList (pageSize, current, surveyName) {
   const params = {
     pageSize,
-    current
+    current,
+    surveyName
   }
   return request({
     url: API.mySurveyAnswerInfo,
