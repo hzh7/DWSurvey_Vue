@@ -23,9 +23,6 @@
           <div class="dw-dcs-main-survey-step">
             <div class="dw-dcs-main-survey-step-item" style="padding: 13px 16px;">
               <el-row type="flex" justify="space-between" align="middle" >
-                <el-col :span="3">
-                  <router-link class="dw-link dw-link-1" to="/"><i class="el-icon-edit"></i>问卷设计</router-link>
-                </el-col>
                 <el-col :span="3" >
                   <router-link :to="`${prevPath}/survey/c/url/${survey.id}`" :class="{ 'dw-link-primary' : isAnswerUrl || isSurveySet || isSiteShare || isSiteComp || isAnswerWx}" class="dw-link dw-link-1" ><i class="el-icon-link"></i>问卷收集</router-link>
                 </el-col>
