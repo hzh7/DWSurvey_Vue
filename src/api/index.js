@@ -12,6 +12,7 @@ export default {
   surveyDelete: `/api/dwsurvey/app/survey/delete.do`,
   surveyReport: `/api/dwsurvey/app/stats/report.do`,
   surveyAnswerList: `/api/dwsurvey/app/answer/list.do`,
+  surveyAll: `/api/dwsurvey/app/design/survey-design/surveyAll.do`,
   mySurveyAnswerInfo: `/api/dwsurvey/app/answer/my-list.do`,
   surveyAnswerInfo: `/api/dwsurvey/app/answer/info.do`,
   surveyAnswerExport: `/api/dwsurvey/app/answer/export-xls.do`,

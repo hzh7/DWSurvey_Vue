@@ -188,3 +188,19 @@ export function dwMySurveyAnswerList (pageSize, current, surveyName) {
   })
 }
 
+/**
+ * 预览问卷时的题目信息
+ * @returns {*}
+ * @param surveyId
+ */
+export function surveyAll (surveyId) {
+  const params = {
+    surveyId
+  }
+  return request({
+    url: API.surveyAll,
+    method: 'get',
+    params
+  })
+}
+

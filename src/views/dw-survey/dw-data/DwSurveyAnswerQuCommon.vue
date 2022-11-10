@@ -9,6 +9,17 @@
         </div>
         <div class="dw-qu-item-body">
           <div v-if="question.quType === 'RADIO'">
+            <el-select v-model="question.anRadio.quItemId">
+              <el-option
+                v-for="item in question.quRadios"
+                :key="item.id"
+                :label="item.optionName"
+                :value="item.id"
+                :disabled="true" >
+              </el-option>
+            </el-select>
+          </div>
+          <div v-if="question.quType === 'RADIO'">
             <div>
               <el-radio-group v-model="question.anRadio.quItemId" >
                 <el-radio v-for="(item) in question.quRadios" :key="item.id" :label="item.id" >{{ item.optionName }}</el-radio>

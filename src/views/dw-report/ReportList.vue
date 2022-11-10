@@ -69,6 +69,10 @@
                   <el-tooltip effect="dark" content="编辑报告" placement="top">
                     <el-button size="mini" content="编辑报告" icon="el-icon-edit" @click="buttonClickA(`/static/diaowen/report-answer-p.html?reportId=${scope.row.id}&surveyId=${scope.row.surveyId}`)" ></el-button>
                   </el-tooltip>
+                  <el-tooltip effect="dark" content="编辑报告222" placement="top">
+                    <!--                    <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/report/d/qu/fdceb339-2fda-4dda-9932-ca214dbdfb72/3fea360c-9f2d-42ab-853c-f45a56a067b8`)"></el-button>-->
+                    <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/report/d/qu/${scope.row.id}/${scope.row.surveyId}`)"></el-button>
+                  </el-tooltip>
                   <el-tooltip effect="dark" content="关联答卷" placement="top">
                     <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.surveyId}`)"></el-button>
                   </el-tooltip>

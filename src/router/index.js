@@ -21,6 +21,7 @@ import Login from '@/views/Login'
 import ReportList from '@/views/dw-report/ReportList'
 import ReportItemList from '@/views/dw-report/ReportItemList'
 import DwMySurveyAnswer from '@/views/dw-survey/dw-data/DwMySurveyAnswer'
+import ReportQuConfig from '@/views/dw-report/ReportQuConfig'
 
 Vue.use(Router)
 
@@ -126,6 +127,11 @@ export default new Router({
           path: '/no-top/dw-survey/d/report/:reportId/:itemId', // 一份具体的报告
           name: 'DwSurveyReportPdf',
           component: DwSurveyReportPdf
+        },
+        {
+          path: '/no-top/report/d/qu/:reportId/:surveyId', // 一份具体的报告
+          name: 'ReportQuConfig',
+          component: ReportQuConfig
         }
       ]
     },
