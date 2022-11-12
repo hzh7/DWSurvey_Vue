@@ -160,3 +160,18 @@ export function reportItemDelete (data) {
   })
 }
 
+/**
+ * 保存报告的题目配置
+ */
+export function reportQuSave (reportId, questions) {
+  const params = {
+    'reportId': reportId
+  }
+  return request({
+    url: API.reportQuSave,
+    method: 'post',
+    data: questions,
+    params: params
+  })
+}
+

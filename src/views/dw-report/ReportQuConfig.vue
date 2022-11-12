@@ -94,6 +94,7 @@
 import DwSurveyDcsWrapper from '@/components/common/DwSurveyDcsWrapper'
 // import DwSurveyAnswerQuCommon from '../dw-survey/dw-data/DwSurveyAnswerQuCommon'
 import {surveyAll} from '@/api/dw-survey'
+import {reportQuSave} from '@/api/dw-report'
 
 export default {
   name: 'DwSurveyAnswerInfo',
@@ -104,10 +105,10 @@ export default {
   data () {
     return {
       survey: {
-        questions: [{
-          showInReport: true
-        }]
+        surveyId: '',
+        questions: []
       },
+      reportId: '',
       tableData: [],
       pageSize: 10,
       currentPage: 1,
@@ -146,8 +147,8 @@ export default {
     }
   },
   mounted () {
-    // this.querySurveyAll()
-
+    this.reportId = this.$route.params.reportId
+    this.survey.surveyId = this.$route.params.surveyId
     this.querySurveyAnswer()
   },
   methods: {
@@ -165,14 +166,29 @@ export default {
       return split[split.length-1]
     },
     handleConfirm () {
-      console.log(this.survey.questions)
+      reportQuSave(this.reportId, this.survey.questions).then((response) => {
+        const httpResult = response.data
+        if (httpResult.resultCode === 200) {
+          this.$message.success('保存成功！')
+          this.querySurveyAnswer()
+        } else {
+          this.$message.error(httpResult.data)
+        }
+      })
     },
     querySurveyAnswer () {
       surveyAll(this.$route.params.surveyId).then((response) => {
-        this.survey.questions = response.data.data.questions
+        this.survey.questions = []
+        for (let i=0; i < response.data.data.questions.length; i++) {
+          const questionData = response.data.data.questions[i]
+          if (['PAGETAG', 'PARAGRAPH'].includes(questionData.quType)) {
+            continue
+          }
+          this.survey.questions.push(questionData)
+        }
+        // this.survey.questions = response.data.data.questions
 
         for (let i=0; i < this.survey.questions.length; i++) {
-          // this.$set(this.survey.questions[i], 'showInReport', true)
           const questionData = this.survey.questions[i]
           if (questionData.showInReport === null) {
             questionData.showInReport = true
@@ -245,12 +261,11 @@ export default {
               }
             }
           }
-          questionData.reportQuTitle = questionData.quTitle
+          if (questionData.reportQuTitle === null || questionData.reportQuTitle === '') {
+            questionData.reportQuTitle = questionData.quTitle
+          }
         }
       })
-    },
-    handleCurrentChange: function (val) {
-
     }
   }
 }

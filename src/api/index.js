@@ -33,5 +33,6 @@ export default {
   myReportItemList: `/api/dwsurvey/app/reportItem/my-list.do`,
   reportItemGenerate: `/api/dwsurvey/app/reportItem/generate.do`,
   reportItemInit: `/api/dwsurvey/app/reportItem/init.do`,
-  reportItemDelete: `/api/dwsurvey/app/reportItem/delete.do`
+  reportItemDelete: `/api/dwsurvey/app/reportItem/delete.do`,
+  reportQuSave: `/api/dwsurvey/app/report/qu-save.do`
 }

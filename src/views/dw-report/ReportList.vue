@@ -67,11 +67,8 @@
               <template slot-scope="scope">
                 <el-button-group>
                   <el-tooltip effect="dark" content="编辑报告" placement="top">
-                    <el-button size="mini" content="编辑报告" icon="el-icon-edit" @click="buttonClickA(`/static/diaowen/report-answer-p.html?reportId=${scope.row.id}&surveyId=${scope.row.surveyId}`)" ></el-button>
-                  </el-tooltip>
-                  <el-tooltip effect="dark" content="编辑报告222" placement="top">
-                    <!--                    <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/report/d/qu/fdceb339-2fda-4dda-9932-ca214dbdfb72/3fea360c-9f2d-42ab-853c-f45a56a067b8`)"></el-button>-->
-                    <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/report/d/qu/${scope.row.id}/${scope.row.surveyId}`)"></el-button>
+                    <!-- <el-button size="mini" content="编辑报告" icon="el-icon-edit" @click="buttonClickA(`/static/diaowen/report-answer-p.html?reportId=${scope.row.id}&surveyId=${scope.row.surveyId}`)" ></el-button>-->
+                    <el-button size="mini" icon="el-icon-edit" @click="handleGo(`/no-top/report/d/qu/${scope.row.id}/${scope.row.surveyId}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="关联答卷" placement="top">
                     <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.surveyId}`)"></el-button>
@@ -292,11 +289,7 @@ export default {
       })
     },
     handleDialogConfirm () {
-      if (this.form.id === null) {
-        this.createReport()
-      } else {
-        this.copySurvey(this.form.id)
-      }
+      this.createReport()
     },
     handleDialogSettingConfirm () {
       reportMinSampleSizeAndStatue(this.settingForm.reportId, this.settingForm.minSampleSize, this.settingForm.reportState).then((response) => {
@@ -320,7 +313,8 @@ export default {
         if (httpResult.resultCode === 200) {
           this.dialogFormVisible = false
           this.$confirm('报告创建成功，点击“继续编辑报告”进入报告内容编辑。', '系统提示', {confirmButtonText: '继续编辑报告'}).then(({value}) => {
-            window.location.href=`/static/diaowen/report-answer-p.html?reportId=${resultData.id}&surveyId=${resultData.surveyId}`
+            // window.location.href=`/static/diaowen/report-answer-p.html?reportId=${resultData.id}&surveyId=${resultData.surveyId}`
+            this.handleGo(`/no-top/report/d/qu/${resultData.id}/${resultData.surveyId}`)
           }).catch(() => {
             this.queryList(1)
           })
