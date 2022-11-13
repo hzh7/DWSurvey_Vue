@@ -36,6 +36,17 @@ $(document).ready(function(){
   });
 });
 
+function validatePageForms(){
+  $("#surveyForm").attr("action","/api/dwsurvey/anon/response/check_answer_cnt.do").ajaxSubmit({
+    success: function(data) {
+      if (data === 'failed'){
+        window.location="/static/diaowen/message.html?respType=24";
+      }
+    },
+    error: function(request, errordata, errorObject) { console.log(errorObject.toString()); },
+  });
+  return false; //阻止表单默认提交
+}
 
 function sww(){
 
@@ -48,6 +59,10 @@ function sww(){
     //分页设置 nextPage_a prevPage_a
     $(".nextPage_a").click(function(){
       if(validateForms()){
+        // 验证提交的用户信息，判断是否达到回答次数限制
+        validatePageForms()
+        $("#surveyForm").attr("action","/api/dwsurvey/anon/response/save.do")
+
         var thParent=$(this).parent();
         var nextPageNo=thParent.find("input[name='nextPageNo']").val();
 //		$(".li_surveyQuItemBody").hide();

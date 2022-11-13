@@ -58,7 +58,7 @@ export function myReportItemList (surveyAnswerId) {
 }
 
 /**
- * 指定reportId报告的详细报告
+ * 指定reportId报告的详细报告(60s同步处理的长连接)
  */
 export function reportItemGenerate (reportId, surveyAnswerId) {
   const params = {
@@ -68,7 +68,8 @@ export function reportItemGenerate (reportId, surveyAnswerId) {
   return request({
     url: API.reportItemGenerate,
     method: 'get',
-    params
+    params,
+    timeout: 60000
   })
 }
 

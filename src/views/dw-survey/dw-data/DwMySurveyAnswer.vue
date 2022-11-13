@@ -38,7 +38,7 @@
           <el-table-column label="操作" width="160" >
             <template slot-scope="scope">
               <el-button-group>
-                <el-tooltip effect="dark" content="查看答卷" placement="top">
+                <el-tooltip v-if="isAdmin" effect="dark" content="查看答卷" placement="top">
                   <el-button size="mini" icon="el-icon-view" @click="handleGo(`/no-top/dw-survey/d/data/${scope.row.surveyId}/${scope.row.id}`)"></el-button>
                 </el-tooltip>
                 <el-tooltip effect="dark" content="查看报告" placement="top">
@@ -99,6 +99,7 @@
 import DwSurveyDcsWrapper from '@/components/common/DwSurveyDcsWrapper'
 import {dwMySurveyAnswerList} from '@/api/dw-survey'
 import {myReportItemList, reportItemState} from '@/api/dw-report'
+import DwAuthorized from '@/utils/dw-authorized'
 
 export default {
   name: 'DwMySurveyAnswer',
@@ -116,7 +117,8 @@ export default {
       reportItemData: [],
       formInline: {
         surveyName: null
-      }
+      },
+      isAdmin: DwAuthorized.isAdmin()
     }
   },
   mounted () {

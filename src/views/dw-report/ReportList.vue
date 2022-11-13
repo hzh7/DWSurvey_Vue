@@ -134,11 +134,7 @@
       <el-dialog :visible.sync="dialogFormVisibleSetting" title="报告设置" append-to-body width="40%" >
         <el-form label-position="top">
           <el-form-item :label-width="formLabelWidth" label="报告生成最少样本量：" >
-            <el-input
-              v-model="settingForm.minSampleSize"
-              onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
-              autocomplete="off"
-              placeholder="请输入样本量"></el-input>
+            <el-input-number :min="0" :max="10000" v-model="settingForm.minSampleSize"></el-input-number>
           </el-form-item>
           <el-form-item :label-width="formLabelWidth" label="报告状态变更：" prop="status" class="dw-dialog-form-item">
             <el-radio-group v-model="settingForm.reportState">

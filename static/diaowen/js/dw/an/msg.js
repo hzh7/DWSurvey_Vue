@@ -55,6 +55,9 @@ function resultStatus2Msg(resptype,sid,ruleCode,msg) {
   }else if(resptype==='23'){
     tempMsg.resultNote = '超过单个IP答卷次数限制!';
     tempMsg.resultColor = "#e70f0f";
+  }else if(resptype==='24'){
+    tempMsg.resultNote = '超过回答次数限制!';
+    tempMsg.resultColor = "#e70f0f";
   }else if(resptype==='106'){
     tempMsg.resultNote = '口令超过使用次数!';
     tempMsg.resultColor = "#e70f0f";

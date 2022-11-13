@@ -158,7 +158,7 @@ export default {
         })
         setTimeout(() => {
           loading.close()
-        }, 5000)
+        }, 60000)
         reportItemGenerate(reportId, surveyAnswerId).then((response) => {
           console.log(response)
           loading.close()
@@ -170,7 +170,8 @@ export default {
             this.$message.error('生成失败')
           }
         })
-      }).catch(() => {})
+        // eslint-disable-next-line no-undef
+      }).catch(() => { loading.close() })
     },
     handlePreviewPdf (reportId, reportItemId) {
       reportItemState(reportId, reportItemId).then((response) => {

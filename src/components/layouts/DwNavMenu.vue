@@ -8,7 +8,7 @@
     class="dw-menu-height dw-menu"
     router
     @select="handleSelect">
-    <el-menu-item index="/dw/my-survey" >我的问卷</el-menu-item>
+    <el-menu-item index="/dw/my-survey" >我的报告</el-menu-item>
     <el-menu-item v-has-dw-role="'DWSURVEY_SUPER_ADMIN'" v-if="isAdmin" index="/dw/survey">问卷中心</el-menu-item>
     <el-menu-item v-has-dw-role="'DWSURVEY_SUPER_ADMIN'" v-if="isAdmin" index="/dw/report" >报告中心</el-menu-item>
     <el-menu-item index="/dw/user" >个人中心</el-menu-item>

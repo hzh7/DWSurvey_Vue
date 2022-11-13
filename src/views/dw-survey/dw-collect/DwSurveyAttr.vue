@@ -25,6 +25,12 @@
                         <el-checkbox v-model="survey.surveyDetail.refresh">有重复回答启用验证码</el-checkbox>
                       </el-form-item>
                       <el-form-item>
+                        <div>
+                          <el-checkbox v-model="survey.surveyDetail.userAnswer">同一用户可回答次数</el-checkbox>
+                          <el-input-number :min="0" :max="1000" v-model="survey.surveyDetail.userAnswerCnt" placeholder="请输入次数" controls-position="right"></el-input-number>
+                        </div>
+                      </el-form-item>
+                      <el-form-item>
                         <el-checkbox v-model="survey.surveyDetail.rule">启用访问密码，设置密码</el-checkbox>
                         <el-input v-model="survey.surveyDetail.ruleCode" placeholder="请输入内容" style="width: 160px;"></el-input>
                       </el-form-item>
@@ -114,6 +120,8 @@ export default {
         this.survey.surveyDetail.endNum = resultData.surveyDetail.endNum
         this.survey.surveyDetail.ynEndTime = resultData.surveyDetail.ynEndTime === 1
         this.survey.surveyDetail.ruleCode = resultData.surveyDetail.ruleCode
+        this.survey.surveyDetail.userAnswerCnt = resultData.surveyDetail.userAnswerCnt
+        this.$set(this.survey.surveyDetail, 'userAnswer', resultData.surveyDetail.userAnswerCnt > 0)
       })
     },
     onSubmit () {
@@ -129,7 +137,8 @@ export default {
         ynEndTime: surveyDetail.ynEndTime ? 1 : 0,
         endNum: surveyDetail.endNum,
         endTime: surveyDetail.endTime,
-        ruleCode: surveyDetail.ruleCode
+        ruleCode: surveyDetail.ruleCode,
+        userAnswerCnt: surveyDetail.userAnswer ? surveyDetail.userAnswerCnt : 0
       }
       console.log(data)
       dwSurveyUpdate(data).then((response) => {
