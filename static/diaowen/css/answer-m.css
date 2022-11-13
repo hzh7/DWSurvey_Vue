@@ -276,13 +276,15 @@ body{
   margin-left: 0px;
 }
 .dwsurvey-controlgroup .starOptionTitle{
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 16px;
 }
 .dwsurvey-controlgroup .starOptionContent{
-  font-size: 14px;
+  margin-top: 5px;
+  font-size: 16px;
 }
 .starRating{
-  font-size: 14px;
+  font-size: 16px;
 }
 .starRating .fa{
   cursor: pointer;
@@ -342,6 +344,7 @@ body{
 }
 .quTitleText{
   /* text-indent: 2em; */
+  font-size: 18px;
 }
 #dwSurveyNote{
   padding-top: 0px;

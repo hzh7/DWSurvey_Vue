@@ -25,10 +25,15 @@
                         <el-checkbox v-model="survey.surveyDetail.refresh">有重复回答启用验证码</el-checkbox>
                       </el-form-item>
                       <el-form-item>
-                        <div>
+                        <el-tooltip effect="dark" content="默认0表示不做限制" placement="top">
                           <el-checkbox v-model="survey.surveyDetail.userAnswer">同一用户可回答次数</el-checkbox>
-                          <el-input-number :min="0" :max="1000" v-model="survey.surveyDetail.userAnswerCnt" placeholder="请输入次数" controls-position="right"></el-input-number>
-                        </div>
+                        </el-tooltip>
+                        <el-input-number :min="0" :max="1000" v-model="survey.surveyDetail.userAnswerCnt" placeholder="请输入次数" controls-position="right"></el-input-number>
+                      </el-form-item>
+                      <el-form-item v-if="survey.surveyDetail.userAnswer && survey.surveyDetail.userAnswerCnt>0">
+                        <el-checkbox v-model="survey.surveyDetail.userAnswerLimitDayFlag">同一用户可回答次数限制生效时长</el-checkbox>
+                        <el-input-number :min="0" :max="1000" v-model="survey.surveyDetail.userAnswerLimitDay" placeholder="请输入天数" controls-position="right"></el-input-number>
+                        <span>天</span>
                       </el-form-item>
                       <el-form-item>
                         <el-checkbox v-model="survey.surveyDetail.rule">启用访问密码，设置密码</el-checkbox>
@@ -121,7 +126,9 @@ export default {
         this.survey.surveyDetail.ynEndTime = resultData.surveyDetail.ynEndTime === 1
         this.survey.surveyDetail.ruleCode = resultData.surveyDetail.ruleCode
         this.survey.surveyDetail.userAnswerCnt = resultData.surveyDetail.userAnswerCnt
+        this.survey.surveyDetail.userAnswerLimitDay = resultData.surveyDetail.userAnswerLimitDay
         this.$set(this.survey.surveyDetail, 'userAnswer', resultData.surveyDetail.userAnswerCnt > 0)
+        this.$set(this.survey.surveyDetail, 'userAnswerLimitDayFlag', resultData.surveyDetail.userAnswerLimitDay > 0)
       })
     },
     onSubmit () {
@@ -138,7 +145,8 @@ export default {
         endNum: surveyDetail.endNum,
         endTime: surveyDetail.endTime,
         ruleCode: surveyDetail.ruleCode,
-        userAnswerCnt: surveyDetail.userAnswer ? surveyDetail.userAnswerCnt : 0
+        userAnswerCnt: surveyDetail.userAnswer ? surveyDetail.userAnswerCnt : 0,
+        userAnswerLimitDay: surveyDetail.userAnswerLimitDayFlag && surveyDetail.userAnswer ? surveyDetail.userAnswerLimitDay : 0
       }
       console.log(data)
       dwSurveyUpdate(data).then((response) => {

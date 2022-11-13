@@ -54,6 +54,7 @@
                 <el-tag v-else-if="scope.row.generateStatus === 1" type="info" >生成中</el-tag>
                 <el-tag v-else-if="scope.row.generateStatus === 2" type="success" >生成成功</el-tag>
                 <el-tag v-else-if="scope.row.generateStatus === 3" type="danger" >生成失败</el-tag>
+                <el-tag v-else-if="scope.row.generateStatus === 4" type="danger" >已归档</el-tag>
                 <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
               </template>
             </el-table-column>
@@ -67,7 +68,7 @@
                     <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/data/${scope.row.surveyId}/${scope.row.surveyAnswerId}`)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="强制生成报告" placement="top">
-                    <el-button size="mini" icon="el-icon-refresh-left" @click="handleGenerate(scope.row.reportId, scope.row.surveyAnswerId)"></el-button>
+                    <el-button :disabled="scope.row.generateStatus === 4" size="mini" icon="el-icon-refresh-left" @click="handleGenerate(scope.row.reportId, scope.row.surveyAnswerId)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="删除报告" placement="top">
                     <el-button size="mini" icon="el-icon-delete" @click="handleDelete(scope.row.id)"></el-button>
@@ -177,7 +178,7 @@ export default {
       reportItemState(reportId, reportItemId).then((response) => {
         console.log(response)
         const httpResult = response.data
-        if (httpResult.resultCode === 200 && httpResult.data === 2) {
+        if (httpResult.resultCode === 200 && (httpResult.data === 2 || httpResult.data === 4)) {
           window.location.href = '/api/dwsurvey/app/report/readPdf?reportItemId='+reportItemId
         } else {
           this.$message.error(httpResult.data)

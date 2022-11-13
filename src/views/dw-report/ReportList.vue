@@ -73,9 +73,6 @@
                   <el-tooltip effect="dark" content="关联答卷" placement="top">
                     <el-button size="mini" icon="el-icon-share" @click="handlePush(`/dw/survey/c/url/${scope.row.surveyId}`)"></el-button>
                   </el-tooltip>
-                  <el-tooltip effect="dark" content="初始化报告" placement="top">  <!--                    todo 修改图标-->
-                    <el-button size="mini" icon="el-icon-s-cooperation" @click="handleInitReportItem(scope.row.id)"></el-button>
-                  </el-tooltip>
                   <el-tooltip effect="dark" content="报告详细数据" placement="top">
                     <el-button size="mini" icon="el-icon-s-data" @click="handlePush(`/dw/report/d/item/${scope.row.id}`)"></el-button>
                   </el-tooltip>
@@ -158,7 +155,7 @@
 <script>
 
 import {dwSurveyList} from '@/api/dw-survey'
-import {reportCreate, reportList, reportItemInit, reportMinSampleSizeAndStatue, reportDelete} from '@/api/dw-report'
+import {reportCreate, reportList, reportMinSampleSizeAndStatue, reportDelete} from '@/api/dw-report'
 import {dwSurveyCopy} from '../../api/dw-survey'
 
 export default {
@@ -199,19 +196,6 @@ export default {
   methods: {
     buttonClickA (href) {
       window.location.href = href
-    },
-    handleInitReportItem (reportId) {
-      reportItemInit(reportId).then((response) => {
-        const httpResult = response.data
-        if (httpResult.resultCode === 200) {
-          this.$message.success('报告初始化成功，即将刷新数据。')
-          this.queryList(1)
-        } else {
-          this.$message.error(httpResult.data)
-        }
-      }).catch(() => {
-        console.log('error')
-      })
     },
     // handlePreviewPdf (reportId, itemId) {
     //   reportItemState(reportId, itemId).then((response) => {

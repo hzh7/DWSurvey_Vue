@@ -207,7 +207,7 @@ export default {
           } else if (quType==='SCORE') {
             questionData.quTypeName = '评分题'
             quOptionsObj = questionData.quScores
-            questionData.reportQuType = 1
+            questionData.reportQuType = questionData.reportQuType===null?1:questionData.reportQuType
           } else if (quType==='ORDERQU') {
             questionData.quTypeName = '排序题'
             quOptionsObj = questionData.quOrderbys
