@@ -64,7 +64,7 @@
                 <span style="margin-left: 10px">{{ scope.row.createDate }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="操作" width="280">
+            <el-table-column label="操作" width="300">
               <template slot-scope="scope">
                 <el-button-group>
                   <el-tooltip effect="dark" content="编辑问卷" placement="top">

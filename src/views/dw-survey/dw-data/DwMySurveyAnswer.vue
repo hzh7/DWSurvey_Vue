@@ -66,12 +66,12 @@
               :data="reportItemData"
               stripe
               style="width: 100%">
-              <el-table-column property="reportName" label="报告名称" width="180"></el-table-column>
+              <el-table-column property="reportName" label="报告名称" width="250"></el-table-column>
               <el-table-column label="报告状态" width="150" align="center">
                 <template slot-scope="scope">
                   <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
                   <el-tag v-else-if="scope.row.generateStatus === 1" type="info" >生成中</el-tag>
-                  <el-tag v-else-if="scope.row.generateStatus === 2" type="success" >生成成功</el-tag>
+                  <el-tag v-else-if="scope.row.generateStatus === 2 || scope.row.generateStatus === 4" type="success" >生成成功</el-tag>
                   <el-tag v-else-if="scope.row.generateStatus === 3" type="danger" >生成失败</el-tag>
                   <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
                 </template>
@@ -81,7 +81,7 @@
                 <template slot-scope="scope">
                   <el-button-group>
                     <el-tooltip effect="dark" content="点击跳转" placement="top">
-                      <el-button :disabled="scope.row.generateStatus!==2" size="mini" icon="el-icon-document" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)" ></el-button>
+                      <el-button :disabled="scope.row.generateStatus!==2 && scope.row.generateStatus!==4" size="mini" icon="el-icon-document" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)" ></el-button>
                     </el-tooltip>
                   </el-button-group>
                 </template>
@@ -138,7 +138,7 @@ export default {
       reportItemState(reportId, reportItemId).then((response) => {
         console.log(response)
         const httpResult = response.data
-        if (httpResult.resultCode === 200 && httpResult.data === 2) {
+        if (httpResult.resultCode === 200 && (httpResult.data === 2 || httpResult.data === 4)) {
           window.location.href = '/api/dwsurvey/app/report/readPdf?reportItemId='+reportItemId
         } else {
           this.$message.error(httpResult.data)

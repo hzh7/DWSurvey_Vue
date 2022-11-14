@@ -18,7 +18,7 @@
             <el-row type="flex">
               <el-col :span="18"><div style="font-size: 14px;padding: 10px;"><strong>详细报告列表</strong></div></el-col>
               <el-col :span="5" style="text-align: right;padding-right: 2px;" ><el-button type="primary" size="small" @click="handleInit(false)" >初始化报告</el-button></el-col>
-              <el-col :span="2" style="text-align: right;padding-right: 2px;" ><el-button type="primary" size="small" @click="handleInit(true)" >重新生成报告</el-button></el-col>
+              <!--              <el-col :span="2" style="text-align: right;padding-right: 2px;" ><el-button type="primary" size="small" @click="handleInit(true)" >重新生成报告</el-button></el-col>-->
             </el-row>
           </div>
           <el-table
