@@ -281,14 +281,19 @@ body{
 }
 .dwsurvey-controlgroup .starOptionContent{
   margin-top: 5px;
-  font-size: 16px;
+  font-size: 20px;
 }
 .starRating{
   font-size: 16px;
 }
 .starRating .fa{
+  width: 10%;
+  margin-left: 5px;
   cursor: pointer;
   padding: 3px;
+}
+.starRating .scoreDescription{
+  font-size: 16px;
 }
 .starRating .fa-star{
   color: #365f8f;
@@ -553,6 +558,13 @@ table.quScaleTable tr td.quCoChenTdRC:hover{
 }
 .diaowen-m-content img{
   width: 100%;
+}
+.surveyQuItemContent .quCoItem .scoreRow {
+  /*border-style: groove;*/
+  margin-top: 8px;
+  width:100%;
+  height:100%;
+  border:1px solid #ddd
 }
 .surveyQuItemContent .quCoItem.imgSelectQu{
   /*margin-top: 10px;*/

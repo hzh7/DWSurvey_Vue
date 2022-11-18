@@ -33,7 +33,7 @@ function resultStatus2Msg(resptype,sid,ruleCode,msg) {
     tempMsg.resultNote = '发生未知异常，操作未成功!';
     tempMsg.resultColor = "#e70f0f";
   }else if(resptype==='6'){
-    tempMsg.resultNote = '答卷提交成功，感谢您的支持!\n后续您可登录本站查阅报告';
+    tempMsg.resultNote = '答卷提交成功，感谢您的支持!<br/>后续您可登录本站查阅报告，账户为邮箱号，默认密码为学生证号后6位';
     setReqUrl({reqUrl:'/#/dw/my-survey', urlText:'点此跳转登录'})
     tempMsg.resultColor = "#1890ff";
     tempMsg.success = true;

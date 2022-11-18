@@ -58,11 +58,14 @@
                 <el-tag v-else disable-transitions style="margin-left: 10px" >未知</el-tag>
               </template>
             </el-table-column>
-            <el-table-column label="操作" width="200" >
+            <el-table-column label="操作" width="250" >
               <template slot-scope="scope">
                 <el-button-group>
                   <el-tooltip effect="dark" content="查看报告" placement="top">
                     <el-button size="mini" icon="el-icon-view" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)"></el-button>
+                  </el-tooltip>
+                  <el-tooltip effect="dark" content="下载报告" placement="top">
+                    <el-button size="mini" icon="el-icon-download" @click="handleDownloadPdf(scope.row.reportId, scope.row.id)"></el-button>
                   </el-tooltip>
                   <el-tooltip effect="dark" content="查看关联答卷" placement="top">
                     <el-button size="mini" icon="el-icon-document" @click="handleGo(`/no-top/dw-survey/d/data/${scope.row.surveyId}/${scope.row.surveyAnswerId}`)"></el-button>
@@ -180,6 +183,19 @@ export default {
         const httpResult = response.data
         if (httpResult.resultCode === 200 && (httpResult.data === 2 || httpResult.data === 4)) {
           window.location.href = '/api/dwsurvey/app/report/readPdf?reportItemId='+reportItemId
+        } else {
+          this.$message.error(httpResult.data)
+        }
+      }).catch(() => {
+        console.log('error')
+      })
+    },
+    handleDownloadPdf (reportId, reportItemId) {
+      reportItemState(reportId, reportItemId).then((response) => {
+        console.log(response)
+        const httpResult = response.data
+        if (httpResult.resultCode === 200 && (httpResult.data === 2 || httpResult.data === 4)) {
+          window.location.href = '/api/dwsurvey/app/report/downloadPdf?reportItemId='+reportItemId
         } else {
           this.$message.error(httpResult.data)
         }

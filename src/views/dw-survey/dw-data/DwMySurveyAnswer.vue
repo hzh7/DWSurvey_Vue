@@ -61,13 +61,13 @@
         </div>
 
         <div>
-          <el-dialog :visible.sync="dialogTableVisible" title="报告列表" append-to-body width="40%" >
+          <el-dialog :visible.sync="dialogTableVisible" title="报告列表" append-to-body width="60%" >
             <el-table
               :data="reportItemData"
               stripe
               style="width: 100%">
               <el-table-column property="reportName" label="报告名称" width="250"></el-table-column>
-              <el-table-column label="报告状态" width="150" align="center">
+              <el-table-column label="报告状态" width="200" align="center">
                 <template slot-scope="scope">
                   <el-tag v-if="scope.row.generateStatus === 0" >初始化</el-tag>
                   <el-tag v-else-if="scope.row.generateStatus === 1" type="info" >生成中</el-tag>
@@ -77,11 +77,14 @@
                 </template>
               </el-table-column>
               <el-table-column property="createDate" label="生成时间"></el-table-column>
-              <el-table-column label="操作" width="160" >
+              <el-table-column label="操作" width="200" >
                 <template slot-scope="scope">
                   <el-button-group>
                     <el-tooltip effect="dark" content="点击跳转" placement="top">
                       <el-button :disabled="scope.row.generateStatus!==2 && scope.row.generateStatus!==4" size="mini" icon="el-icon-document" @click="handlePreviewPdf(scope.row.reportId, scope.row.id)" ></el-button>
+                    </el-tooltip>
+                    <el-tooltip effect="dark" content="下载报告" placement="top">
+                      <el-button size="mini" icon="el-icon-download" @click="handleDownloadPdf(scope.row.reportId, scope.row.id)"></el-button>
                     </el-tooltip>
                   </el-button-group>
                 </template>
@@ -140,6 +143,19 @@ export default {
         const httpResult = response.data
         if (httpResult.resultCode === 200 && (httpResult.data === 2 || httpResult.data === 4)) {
           window.location.href = '/api/dwsurvey/app/report/readPdf?reportItemId='+reportItemId
+        } else {
+          this.$message.error(httpResult.data)
+        }
+      }).catch(() => {
+        console.log('error')
+      })
+    },
+    handleDownloadPdf (reportId, reportItemId) {
+      reportItemState(reportId, reportItemId).then((response) => {
+        console.log(response)
+        const httpResult = response.data
+        if (httpResult.resultCode === 200 && (httpResult.data === 2 || httpResult.data === 4)) {
+          window.location.href = '/api/dwsurvey/app/report/downloadPdf?reportItemId='+reportItemId
         } else {
           this.$message.error(httpResult.data)
         }
