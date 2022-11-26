@@ -207,7 +207,6 @@ export default {
           } else if (quType==='SCORE') {
             questionData.quTypeName = '评分题'
             quOptionsObj = questionData.quScores
-            questionData.reportQuType = questionData.reportQuType===null?1:questionData.reportQuType
           } else if (quType==='ORDERQU') {
             questionData.quTypeName = '排序题'
             quOptionsObj = questionData.quOrderbys
@@ -218,6 +217,9 @@ export default {
             questionData.quTypeName = '文件上传题'
           } else {
             questionData.quTypeName = quType
+          }
+          if (questionData.reportQuType === null) {
+            questionData.reportQuType = quType==='SCORE'?1:0
           }
           if (quType==='CHECKBOX' || quType==='SCORE' || quType==='ORDERQU' || quType==='MULTIFILLBLANK') {
             for (let j=0; j < quOptionsObj.length; j++) {
